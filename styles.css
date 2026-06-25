@@ -42,7 +42,7 @@ html.smooth { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
-  background: var(--ivory);
+  background: var(--ink);
   color: var(--on-light);
   line-height: 1.62;
   overflow-x: hidden;
@@ -66,6 +66,7 @@ p { text-wrap: pretty; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
 section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); }
+#edge { background: var(--ivory); }
 
 /* A kicker used sparingly — gold italic serif, NOT an uppercase tracked eyebrow */
 .kicker {
