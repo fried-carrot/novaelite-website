@@ -142,6 +142,7 @@ section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); }
 .nav-links a:not(.btn)::after { content: ""; position: absolute; left: 0; bottom: -5px; height: 1px; width: 0; background: var(--gold); transition: width 0.35s var(--e-out); }
 .nav-links a:not(.btn):hover::after { width: 100%; }
 .nav-cta { padding: 0.6em 1.3em; font-size: 0.82rem; }
+.menu-label, .menu-contact { display: none; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
 .nav-toggle span { width: 24px; height: 2px; background: currentColor; transition: 0.3s; }
 
@@ -346,19 +347,31 @@ html.js .reveal.in { opacity: 1; transform: none; }
 @media (max-width: 720px) {
   .edge-list { grid-template-columns: 1fr; }
   .edge-item, .edge-item:nth-child(odd), .edge-item:nth-child(even) { padding: 1.8rem 0; border-left: 0; }
-  /* Full-screen fade overlay menu — width = viewport, so it can't overflow */
+  /* Full-screen editorial menu — width = viewport, so it can't overflow */
   .nav-links {
     position: fixed; inset: 0; width: 100%; flex-direction: column;
-    justify-content: center; align-items: center; gap: 1.9rem; padding: 2rem;
-    background: var(--ink); color: var(--on-dark);
-    opacity: 0; visibility: hidden; transform: scale(1.015);
-    transition: opacity 0.4s var(--e-out), visibility 0.4s var(--e-out), transform 0.4s var(--e-out);
+    justify-content: center; align-items: stretch; gap: 0;
+    padding: 5.5rem var(--gutter) 2.5rem;
+    background:
+      radial-gradient(120% 70% at 85% 0%, rgba(132,17,31,0.42), transparent 55%),
+      linear-gradient(165deg, var(--ink) 0%, var(--oxblood-2) 100%);
+    color: var(--on-dark);
+    opacity: 0; visibility: hidden; transform: translateY(-12px);
+    transition: opacity 0.45s var(--e-out), visibility 0.45s var(--e-out), transform 0.5s var(--e-out);
     z-index: var(--z-menu);
   }
   .nav-links.open { opacity: 1; visibility: visible; transform: none; }
-  .nav-links a:not(.btn) { font-size: 1.35rem; opacity: 1; }
-  .nav-links a:not(.btn)::after { display: none; }
-  .nav-cta { margin-top: 0.5rem; font-size: 1rem; padding: 0.85em 1.8em; }
+  .menu-label { display: block; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.6rem; }
+  .nav-links a:not(.btn):not(.menu-contact) {
+    font-family: var(--serif); font-size: clamp(1.9rem, 8vw, 2.5rem); font-weight: 500;
+    color: var(--ivory); text-align: left; opacity: 1;
+    padding: 1.05rem 0; border-top: 1px solid var(--line-dark);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-links a:not(.btn):not(.menu-contact):last-of-type { border-bottom: 1px solid var(--line-dark); }
+  .nav-links a:not(.btn):not(.menu-contact)::after { content: "\2197"; display: inline; position: static; width: auto; height: auto; background: none; color: var(--gold); font-family: var(--sans); font-size: 1.1rem; opacity: 0.7; }
+  .nav-cta { margin-top: 2rem; font-size: 1rem; padding: 1.05em 1.8em; justify-content: center; }
+  .menu-contact { display: block; margin-top: 1.8rem; font-size: 0.86rem; color: var(--on-dark-mute); font-family: var(--sans); letter-spacing: 0.01em; }
   .nav-toggle { display: flex; z-index: calc(var(--z-menu) + 1); }
   .nav-links.open ~ .nav-toggle span { background: var(--on-dark); }
   .nav-links.open ~ .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
