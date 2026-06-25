@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+.venv/
+node_modules/
+
+# Planning doc contains plaintext account credentials — keep out of git
+college consulting .docx
+.claude/
