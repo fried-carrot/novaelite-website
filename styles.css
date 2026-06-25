@@ -320,11 +320,11 @@ footer .legal { width: 100%; border-top: 1px solid var(--line-dark); padding-top
 .advisor .plate img { position: relative; z-index: 1; height: 96px; width: auto; max-width: 170px; object-fit: contain; }
 /* Wider mark (Duke) needs a bigger aura so it isn't hidden behind the logo */
 .advisor .plate.plate-wide::before {
-  inset: -18%;
+  inset: -32%;
   background:
-    radial-gradient(42% 46% at 50% 48%, rgba(255,255,255,0.12), transparent 60%),
-    radial-gradient(58% 60% at 50% 50%, color-mix(in srgb, var(--aura) 64%, transparent), transparent 72%);
-  filter: blur(20px);
+    radial-gradient(40% 44% at 50% 48%, rgba(255,255,255,0.16), transparent 60%),
+    radial-gradient(60% 64% at 50% 50%, color-mix(in srgb, var(--aura) 85%, transparent), transparent 74%);
+  filter: blur(17px);
 }
 
 /* =================================================================
