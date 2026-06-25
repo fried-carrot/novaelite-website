@@ -237,6 +237,21 @@ html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; back
 .pkg li:first-child { border-top: 0; }
 .pkg li::before { content: "—"; color: var(--gold); }
 
+/* Flagship roadmap — ordered, connected path */
+.pkg .path { list-style: none; padding: 0; margin: 0; flex: 1; }
+.pkg .path li { display: flex; gap: 1rem; padding: 0 0 1.5rem; border-top: 0; position: relative; }
+.pkg .path li:last-child { padding-bottom: 0; }
+.pkg .path li::before { content: ""; position: absolute; left: 16px; top: 38px; bottom: 0; width: 1px; background: linear-gradient(var(--gold-deep), rgba(154,118,40,0.15)); }
+.pkg .path li:last-child::before { display: none; }
+.pkg .path .step-n {
+  flex-shrink: 0; width: 33px; height: 33px; border-radius: 50%;
+  border: 1px solid var(--gold); color: var(--gold-light);
+  display: grid; place-items: center; font-family: var(--serif); font-size: 0.98rem;
+  background: var(--oxblood-2); position: relative; z-index: 1;
+}
+.pkg .path b { display: block; color: var(--ivory); font-size: 1.04rem; font-weight: 600; margin-bottom: 0.25rem; line-height: 1.25; }
+.pkg .path p { font-size: 0.88rem; color: var(--on-dark-mute); line-height: 1.5; }
+
 /* =================================================================
    GUARANTEE (drenched crimson)
    ================================================================= */
