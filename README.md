@@ -32,4 +32,10 @@ the default branch. No build command needed.
 - Team bios use placeholders for each founder's individual acceptances; the doc
   only has the combined acceptance list. Fill in per-person details before launch.
 - Instagram link points to the planned handle `novaelitecollegeconsulting`.
-- Replace the monogram team photos with real headshots when available.
+- School logos (acceptance wall + advisor cards) are the founders' supplied
+  image files. These are trademarked university marks: using them on a
+  commercial site implies an affiliation the schools have not granted and is a
+  real cease-and-desist risk. Confirm you accept that before going public, or
+  switch to plain text wordmarks.
+- Stanford's mark is AVIF (`block-s-right.avif`); fine in current browsers but
+  unsupported in older Safari. Provide a PNG fallback if that matters.
