@@ -34,5 +34,48 @@ if ('IntersectionObserver' in window) {
   revealAll();
 }
 
+// Allow the acceptance marquees to be dragged while paused on hover
+const marqueeTracks = document.querySelectorAll('.m-track');
+marqueeTracks.forEach((track) => {
+  let dragging = false;
+  let startX = 0;
+  let startOffset = 0;
+
+  const readOffset = () => {
+    const raw = getComputedStyle(track).getPropertyValue('--marquee-offset').trim();
+    const value = parseFloat(raw);
+    return Number.isNaN(value) ? 0 : value;
+  };
+
+  const setOffset = (value) => {
+    track.style.setProperty('--marquee-offset', `${value}px`);
+  };
+
+  track.addEventListener('pointerdown', (event) => {
+    dragging = true;
+    startX = event.clientX;
+    startOffset = readOffset();
+    track.classList.add('dragging');
+    track.setPointerCapture?.(event.pointerId);
+    event.preventDefault();
+  });
+
+  track.addEventListener('pointermove', (event) => {
+    if (!dragging) return;
+    const delta = (event.clientX - startX)
+    setOffset(startOffset + delta);
+  });
+
+  const stopDragging = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+    track.releasePointerCapture?.(event?.pointerId);
+  };
+
+  track.addEventListener('pointerup', stopDragging);
+  track.addEventListener('pointercancel', stopDragging);
+});
+
 // Enable smooth scrolling only after load so an initial #hash lands instantly
 window.addEventListener('load', () => document.documentElement.classList.add('smooth'));
