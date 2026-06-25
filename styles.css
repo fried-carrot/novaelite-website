@@ -292,19 +292,29 @@ footer .legal { width: 100%; border-top: 1px solid var(--line-dark); padding-top
    ================================================================= */
 /* Acceptance logo wall (HYPSM) — logo shapes haloed in the school colour */
 .logo-wall { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(1.4rem,3vw,2.6rem); max-width: 960px; margin: 0 auto clamp(2.6rem,5vw,3.6rem); }
-.logo-wall .tile { background: radial-gradient(56% 56% at 50% 50%, color-mix(in srgb, var(--aura) 40%, transparent), transparent 72%); padding: 18px 26px; display: grid; place-items: center; transition: transform 0.45s var(--e-out); }
+.logo-wall .tile { position: relative; padding: 22px 32px; display: grid; place-items: center; transition: transform 0.45s var(--e-out); }
+.logo-wall .tile::before {
+  content: ""; position: absolute; inset: -28% -18%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(64% 74% at 42% 40%, color-mix(in srgb, var(--aura) 42%, transparent), transparent 68%),
+    radial-gradient(74% 50% at 60% 64%, color-mix(in srgb, var(--aura) 26%, transparent), transparent 70%);
+  filter: blur(16px); opacity: 0.85;
+}
 .logo-wall .tile:hover { transform: translateY(-4px); }
-.logo-wall .tile img { height: 58px; width: auto; max-width: 124px; object-fit: contain; display: block; }
+.logo-wall .tile img { position: relative; z-index: 1; height: 58px; width: auto; max-width: 124px; object-fit: contain; display: block; }
 .logo-wall .more { font-family: var(--serif); font-style: italic; color: var(--on-light-mute); font-size: 1.35rem; padding-left: 0.2rem; }
 
 /* Advisor logo — colour aura on the dark card, faint core to lift the mark */
-.advisor .plate {
-  width: 100%; height: 150px; display: grid; place-items: center; margin-bottom: 1.3rem;
+.advisor .plate { position: relative; width: 100%; height: 150px; display: grid; place-items: center; margin-bottom: 1.3rem; }
+.advisor .plate::before {
+  content: ""; position: absolute; inset: -6% -8%; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(46% 46% at 50% 50%, rgba(255,255,255,0.09), transparent 62%),
-    radial-gradient(60% 60% at 50% 50%, color-mix(in srgb, var(--aura) 52%, transparent), transparent 72%);
+    radial-gradient(38% 46% at 50% 46%, rgba(255,255,255,0.10), transparent 60%),
+    radial-gradient(60% 72% at 44% 42%, color-mix(in srgb, var(--aura) 50%, transparent), transparent 68%),
+    radial-gradient(72% 50% at 58% 62%, color-mix(in srgb, var(--aura) 34%, transparent), transparent 70%);
+  filter: blur(22px);
 }
-.advisor .plate img { height: 96px; width: auto; max-width: 170px; object-fit: contain; }
+.advisor .plate img { position: relative; z-index: 1; height: 96px; width: auto; max-width: 170px; object-fit: contain; }
 
 /* =================================================================
    MOTION — visible by default; only JS-enabled gets the reveal
