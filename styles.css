@@ -350,9 +350,10 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .edge-item, .edge-item:nth-child(odd), .edge-item:nth-child(even) { padding: 1.8rem 0; border-left: 0; }
   /* Full-screen editorial menu — width = viewport, so it can't overflow */
   .nav-links {
-    position: fixed; inset: 0; width: 100%; flex-direction: column;
-    justify-content: center; align-items: stretch; gap: 0;
-    padding: 5.5rem var(--gutter) 2.5rem;
+    position: fixed; top: 0; left: 0; right: 0; bottom: auto; width: 100%;
+    height: 100vh; height: 100dvh;
+    flex-direction: column; justify-content: center; align-items: stretch; gap: 0;
+    padding: 5.5rem var(--gutter) max(2.5rem, env(safe-area-inset-bottom));
     background:
       radial-gradient(120% 70% at 85% 0%, rgba(132,17,31,0.42), transparent 55%),
       linear-gradient(165deg, var(--ink) 0%, var(--oxblood-2) 100%);
