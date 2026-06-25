@@ -143,6 +143,10 @@ section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); }
 .nav-links a:not(.btn):hover::after { width: 100%; }
 .nav-cta { padding: 0.6em 1.3em; font-size: 0.82rem; }
 .menu-label, .menu-contact { display: none; }
+/* While the mobile menu is open, the nav must NOT create a containing block
+   (backdrop-filter would trap the fixed overlay), and the page shouldn't scroll. */
+html.menu-open { overflow: hidden; }
+html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: transparent; box-shadow: none; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
 .nav-toggle span { width: 24px; height: 2px; background: currentColor; transition: 0.3s; }
 
@@ -296,11 +300,9 @@ footer .legal { width: 100%; border-top: 1px solid var(--line-dark); padding-top
 .logo-wall { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(1.4rem,3vw,2.6rem); max-width: 960px; margin: 0 auto clamp(2.6rem,5vw,3.6rem); }
 .logo-wall .tile { position: relative; padding: 22px 32px; display: grid; place-items: center; transition: transform 0.45s var(--e-out); }
 .logo-wall .tile::before {
-  content: ""; position: absolute; inset: -28% -18%; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(64% 74% at 42% 40%, color-mix(in srgb, var(--aura) 42%, transparent), transparent 68%),
-    radial-gradient(74% 50% at 60% 64%, color-mix(in srgb, var(--aura) 26%, transparent), transparent 70%);
-  filter: blur(16px); opacity: 0.85;
+  content: ""; position: absolute; inset: -12%; z-index: 0; pointer-events: none;
+  background: radial-gradient(52% 58% at 50% 50%, color-mix(in srgb, var(--aura) 58%, transparent), transparent 72%);
+  filter: blur(12px); opacity: 0.92;
 }
 .logo-wall .tile:hover { transform: translateY(-4px); }
 .logo-wall .tile img { position: relative; z-index: 1; height: 58px; width: auto; max-width: 124px; object-fit: contain; display: block; }
@@ -309,12 +311,11 @@ footer .legal { width: 100%; border-top: 1px solid var(--line-dark); padding-top
 /* Advisor logo — colour aura on the dark card, faint core to lift the mark */
 .advisor .plate { position: relative; width: 100%; height: 150px; display: grid; place-items: center; margin-bottom: 1.3rem; }
 .advisor .plate::before {
-  content: ""; position: absolute; inset: -6% -8%; z-index: 0; pointer-events: none;
+  content: ""; position: absolute; inset: 2%; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(38% 46% at 50% 46%, rgba(255,255,255,0.10), transparent 60%),
-    radial-gradient(60% 72% at 44% 42%, color-mix(in srgb, var(--aura) 50%, transparent), transparent 68%),
-    radial-gradient(72% 50% at 58% 62%, color-mix(in srgb, var(--aura) 34%, transparent), transparent 70%);
-  filter: blur(22px);
+    radial-gradient(40% 44% at 50% 48%, rgba(255,255,255,0.12), transparent 60%),
+    radial-gradient(54% 60% at 50% 50%, color-mix(in srgb, var(--aura) 60%, transparent), transparent 70%);
+  filter: blur(16px);
 }
 .advisor .plate img { position: relative; z-index: 1; height: 96px; width: auto; max-width: 170px; object-fit: contain; }
 

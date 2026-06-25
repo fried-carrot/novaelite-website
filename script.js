@@ -9,10 +9,12 @@ window.addEventListener('scroll', onScroll, { passive: true });
 // Mobile menu
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
-toggle.addEventListener('click', () => links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a =>
-  a.addEventListener('click', () => links.classList.remove('open'))
-);
+const setMenu = (open) => {
+  links.classList.toggle('open', open);
+  document.documentElement.classList.toggle('menu-open', open);
+};
+toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
 // Scroll-reveal (content is visible by default; html.js opts into the animation)
 const reveals = document.querySelectorAll('.reveal');
