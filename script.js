@@ -1,8 +1,8 @@
 // NoVa Elite — interaction layer
 
-// Sticky nav: switch to light treatment once past the dark hero
+// Sticky nav: fade to the light treatment as soon as the user starts scrolling
 const nav = document.getElementById('nav');
-const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 

@@ -195,7 +195,7 @@ html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; back
 .hero h1 .cr { color: var(--crimson-bright); font-style: italic; }
 .hero-sub { max-width: 50ch; font-size: clamp(1.04rem, 1.4vw, 1.22rem); color: var(--on-dark-mute); margin-top: 1.8rem; }
 .hero-actions { display: flex; gap: 1rem; margin-top: 2.6rem; flex-wrap: wrap; }
-.hero-foot { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 640px; margin-top: clamp(2.8rem,5vw,4.2rem); border: 1px solid var(--line-dark); border-radius: 3px; }
+.hero-foot { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 640px; margin-top: clamp(1.25rem,2.5vw,2rem); border: 1px solid var(--line-dark); border-radius: 3px; }
 .hero-foot .stat { padding: 1.3rem clamp(1.1rem,2vw,1.8rem); border-left: 1px solid var(--line-dark); }
 .hero-foot .stat:first-child { border-left: 0; }
 .hero-foot .stat .n { font-family: var(--serif); font-size: clamp(1.7rem,2.6vw,2.4rem); color: var(--gold-light); line-height: 1; }
