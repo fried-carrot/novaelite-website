@@ -194,6 +194,8 @@ html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; back
 .hero h1 em { font-style: italic; color: var(--gold-light); }
 .hero h1 .cr { color: var(--crimson-bright); font-style: italic; }
 .hero-sub { max-width: 50ch; font-size: clamp(1.04rem, 1.4vw, 1.22rem); color: var(--on-dark-mute); margin-top: 1.8rem; }
+.hero-cred { max-width: 52ch; margin-top: 1.3rem; padding-top: 1.3rem; border-top: 1px solid var(--line-dark); font-size: clamp(0.98rem, 1.2vw, 1.1rem); color: var(--on-dark); }
+.hero-cred strong { color: var(--gold-light); font-weight: 600; }
 .hero-actions { display: flex; gap: 1rem; margin-top: 2.6rem; flex-wrap: wrap; }
 .hero-foot { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 640px; margin-top: clamp(1.25rem,2.5vw,2rem); border: 1px solid var(--line-dark); border-radius: 3px; }
 .hero-foot .stat { padding: 1.3rem clamp(1.1rem,2vw,1.8rem); border-left: 1px solid var(--line-dark); }
