@@ -257,7 +257,7 @@ html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; back
 .pkg ul { list-style: none; flex: 1; }
 .pkg li { font-size: 0.92rem; color: var(--on-dark); padding: 0.72em 0; border-top: 1px solid var(--line-dark); display: flex; gap: 0.7em; }
 .pkg li:first-child { border-top: 0; }
-.pkg li::before { content: "—"; color: var(--gold); }
+.pkg li::before { content: "·"; color: var(--gold); font-weight: 700; }
 
 /* Flagship roadmap — ordered, connected path */
 .pkg .path { list-style: none; padding: 0; margin: 0; flex: 1; }
