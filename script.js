@@ -34,6 +34,50 @@ if ('IntersectionObserver' in window) {
   revealAll();
 }
 
+// Open Calendly popup from buttons without depending on the badge snippet
+let calendlyScriptLoaded = false;
+let calendlyCssLoaded = false;
+
+const openCalendlyWidget = (url) => {
+  const initialize = () => {
+    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
+      window.Calendly.initPopupWidget({ url });
+      return;
+    }
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  if (!calendlyCssLoaded) {
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = 'https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(style);
+    calendlyCssLoaded = true;
+  }
+
+  if (!calendlyScriptLoaded) {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    script.onload = () => {
+      calendlyScriptLoaded = true;
+      initialize();
+    };
+    document.body.appendChild(script);
+    return;
+  }
+
+  initialize();
+};
+
+document.querySelectorAll('[data-calendly-open]').forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    const url = button.getAttribute('data-calendly-open');
+    if (url) openCalendlyWidget(url);
+  });
+});
+
 // Allow the acceptance marquees to be dragged while paused on hover
 const marqueeTracks = document.querySelectorAll('.m-track');
 marqueeTracks.forEach((track) => {
