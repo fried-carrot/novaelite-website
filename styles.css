@@ -252,7 +252,9 @@ html.menu-open .nav { backdrop-filter: none; -webkit-backdrop-filter: none; back
 .pkg.feature { background: linear-gradient(165deg, rgba(132,17,31,0.35), rgba(67,9,15,0.15)); border-color: var(--gold-deep); }
 .pkg .tag { font-family: var(--serif); font-style: italic; color: var(--gold-light); font-size: 0.98rem; }
 .pkg .ribbon { align-self: flex-start; margin-bottom: 0.8rem; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); background: var(--gold-light); padding: 0.4em 0.85em; font-weight: 700; }
-.pkg h3 { font-size: 1.7rem; margin: 0.55rem 0 0.5rem; color: var(--ivory); }
+.pkg h3 { font-size: 1.7rem; margin: 0.55rem 0 0.2rem; color: var(--ivory); }
+.pkg .price { font-family: var(--serif); font-size: clamp(1.7rem, 2.2vw, 2.1rem); line-height: 1; color: var(--gold-light); margin: 0.3rem 0 0.7rem; }
+.pkg .price span { font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em; color: var(--on-dark-mute); margin-left: 0.15em; }
 .pkg .desc { font-size: 0.95rem; color: var(--on-dark-mute); margin-bottom: 1.5rem; }
 .pkg ul { list-style: none; flex: 1; }
 .pkg li { font-size: 0.92rem; color: var(--on-dark); padding: 0.72em 0; border-top: 1px solid var(--line-dark); display: flex; gap: 0.7em; }
