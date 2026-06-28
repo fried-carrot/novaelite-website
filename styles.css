@@ -103,8 +103,8 @@ section { position: relative; padding-block: clamp(5rem, 10vw, 9rem); }
 }
 .btn .arrow { transition: transform 0.45s var(--e-out); }
 .btn:hover .arrow { transform: translateX(5px); }
-.btn-gold { background: var(--gold); color: var(--ink); }
-.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 16px 34px -14px rgba(195,154,62,0.7); }
+.btn-gold { background: var(--gold); color: var(--ink); border-color: var(--gold-deep); }
+.btn-gold:hover { background: var(--gold-light); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 16px 34px -14px rgba(195,154,62,0.7); }
 .btn-line-dark { color: var(--on-dark); border-color: var(--line-dark); }
 .btn-line-dark:hover { border-color: var(--gold-light); color: var(--gold-light); }
 .btn-crimson { background: var(--crimson); color: var(--ivory); }
