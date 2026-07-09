@@ -123,3 +123,41 @@ marqueeTracks.forEach((track) => {
 
 // Enable smooth scrolling only after load so an initial #hash lands instantly
 window.addEventListener('load', () => document.documentElement.classList.add('smooth'));
+
+// Offerings menu: interactive left menu + right content area
+const offeringsMenuItems = document.querySelectorAll('.offerings-menu .menu-item');
+const offeringsCards = document.querySelectorAll('.offerings-content .offering-card');
+
+const switchOffering = (offeringId) => {
+  // Update menu items
+  offeringsMenuItems.forEach(item => {
+    if (item.getAttribute('data-offering') === offeringId) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
+  // Update content cards
+  offeringsCards.forEach(card => {
+    if (card.getAttribute('data-offering') === offeringId) {
+      card.classList.add('active');
+    } else {
+      card.classList.remove('active');
+    }
+  });
+};
+
+// Add click handlers to menu items
+offeringsMenuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const offeringId = item.getAttribute('data-offering');
+    switchOffering(offeringId);
+  });
+
+  // Optional: hover preview
+  item.addEventListener('mouseenter', () => {
+    const offeringId = item.getAttribute('data-offering');
+    switchOffering(offeringId);
+  });
+});
