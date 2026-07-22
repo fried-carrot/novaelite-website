@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get Started — NoVa Elite College Consulting</title>
+<meta name="description" content="Select your NoVa Elite package and secure your spot. Merit-based pricing. T20 guarantee. Book your advisor today." />
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="src/nova_elite_logo_noname_circled.png">
+
+<style>
+/* ================================================================
+   INHERIT ROOT TOKENS FROM MAIN SITE
+   ================================================================ */
+:root {
+  --ivory:        #f2f1ec;
+  --ivory-2:      #e9e7df;
+  --ink:          #14100c;
+  --ink-2:        #1f1913;
+  --oxblood:      #43090f;
+  --oxblood-2:    #2a070b;
+  --crimson:      #84111f;
+  --crimson-bright: #a8182b;
+  --gold:         #c39a3e;
+  --gold-deep:    #9a7628;
+  --gold-light:   #e6c978;
+
+  --on-dark:      #ece6d8;
+  --on-dark-mute: #b5ab94;
+  --on-light:     #1a1510;
+  --on-light-mute:#6a5f4e;
+
+  --line-dark:  rgba(230,201,120,0.22);
+  --line-light: rgba(26,21,16,0.16);
+
+  --serif: "Fraunces","Hoefler Text",Georgia,serif;
+  --sans:  "Archivo",-apple-system,system-ui,sans-serif;
+
+  --maxw:   1280px;
+  --gutter: clamp(1.25rem,4vw,4.5rem);
+  --e-out:  cubic-bezier(0.16,1,0.3,1);
+
+  --z-sticky: 100;
+  --z-banner: 150;
+  --z-menu:   200;
+  --banner-h: 2.5rem;
+}
+
+/* ================================================================
+   RESET + BASE (mirrors main site)
+   ================================================================ */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; background:var(--ink); }
+html.smooth { scroll-behavior:smooth; }
+body { font-family:var(--sans); background:var(--ink); color:var(--on-light); line-height:1.62; overflow-x:hidden; font-size:clamp(15px,1.04vw,17px); }
+body::after { content:""; position:fixed; inset:0; z-index:1000; pointer-events:none; opacity:0.04; mix-blend-mode:multiply; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+::selection { background:var(--crimson); color:var(--ivory); }
+a { color:inherit; text-decoration:none; }
+svg { display:block; }
+h1,h2,h3,h4 { font-family:var(--serif); font-weight:540; line-height:1.04; letter-spacing:-0.025em; text-wrap:balance; }
+p { text-wrap:pretty; }
+.wrap { max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* ================================================================
+   ANNOUNCEMENT BANNER
+   ================================================================ */
+.announce { position:fixed; top:0; left:0; right:0; height:var(--banner-h); z-index:var(--z-banner); display:flex; align-items:center; overflow:hidden; background:var(--crimson); color:var(--ivory); border-bottom:1px solid var(--gold-deep); }
+.announce-track { display:flex; align-items:center; flex-shrink:0; white-space:nowrap; animation:announce-scroll 64s linear infinite; will-change:transform; }
+@keyframes announce-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.announce:hover .announce-track { animation-play-state:paused; }
+.a-item { display:inline-flex; align-items:center; font-size:0.78rem; font-weight:500; letter-spacing:0.03em; }
+.a-sep { color:var(--gold-light); font-size:0.62rem; margin:0 1.6rem; }
+
+/* ================================================================
+   NAV
+   ================================================================ */
+.nav { position:fixed; top:var(--banner-h); left:0; right:0; z-index:var(--z-sticky); display:flex; align-items:center; justify-content:space-between; padding:1.2rem var(--gutter); transition:background 0.5s var(--e-out),box-shadow 0.5s var(--e-out),padding 0.5s var(--e-out),color 0.5s var(--e-out); color:var(--on-dark); }
+.nav.scrolled { background:rgba(242,241,236,0.88); backdrop-filter:blur(14px) saturate(1.2); box-shadow:0 1px 0 var(--line-light); padding-block:0.85rem; color:var(--on-light); }
+.brand { display:flex; align-items:center; gap:0.7rem; font-family:var(--serif); font-weight:600; }
+.brand b { font-size:1.16rem; letter-spacing:-0.01em; }
+.brand i { font-style:italic; color:var(--gold-light); }
+.nav.scrolled .brand i { color:var(--crimson); }
+.nav-links { display:flex; gap:2.1rem; align-items:center; }
+.nav-links a:not(.btn) { font-size:0.85rem; font-weight:500; letter-spacing:0.01em; position:relative; opacity:0.86; transition:opacity 0.3s; }
+.nav-links a:not(.btn):hover { opacity:1; }
+.nav-links a:not(.btn)::after { content:""; position:absolute; left:0; bottom:-5px; height:1px; width:0; background:var(--gold); transition:width 0.35s var(--e-out); }
+.nav-links a:not(.btn):hover::after { width:100%; }
+.nav-cta { padding:0.6em 1.3em; font-size:0.82rem; }
+.menu-label,.menu-contact { display:none; }
+html.menu-open { overflow:hidden; }
+html.menu-open .nav { backdrop-filter:none; -webkit-backdrop-filter:none; background:transparent; box-shadow:none; }
+.nav-toggle { display:none; background:none; border:0; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
+.nav-toggle span { width:24px; height:2px; background:currentColor; transition:0.3s; }
+.btn { display:inline-flex; align-items:center; gap:0.6em; font-family:var(--sans); font-weight:600; font-size:0.92rem; padding:0.95em 1.8em; border:1px solid transparent; cursor:pointer; transition:all 0.45s var(--e-out); position:relative; }
+.btn .arrow { transition:transform 0.45s var(--e-out); }
+.btn:hover .arrow { transform:translateX(5px); }
+.btn-gold { background:var(--gold); color:var(--ink); border-color:var(--gold-deep); }
+.btn-gold:hover { background:var(--gold-light); border-color:var(--gold); transform:translateY(-2px); box-shadow:0 16px 34px -14px rgba(195,154,62,0.7); }
+.btn-line-dark { color:var(--on-dark); border-color:var(--line-dark); }
+.btn-line-dark:hover { border-color:var(--gold-light); color:var(--gold-light); }
+.kicker { font-family:var(--serif); font-style:italic; font-weight:500; font-size:1.05rem; color:var(--gold-deep); display:inline-flex; align-items:center; gap:0.7em; }
+.kicker::before { content:"✦"; font-style:normal; font-size:0.7em; color:var(--gold); }
+.on-dark .kicker { color:var(--gold-light); }
+
+/* ================================================================
+   PAGE HERO — "Choose your path"
+   ================================================================ */
+.pay-hero {
+  position:relative; padding-top:calc(7rem + var(--banner-h)); padding-bottom:5rem;
+  color:var(--on-dark); overflow:hidden;
+  background:
+    radial-gradient(110% 120% at 80% 0%, rgba(132,17,31,0.6), transparent 50%),
+    radial-gradient(80% 80% at 10% 110%, rgba(67,9,15,0.85), transparent 55%),
+    linear-gradient(160deg, var(--ink) 0%, var(--oxblood-2) 55%, var(--oxblood) 100%);
+}
+.pay-hero::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:0.45; background-image:repeating-linear-gradient(90deg,transparent,transparent 119px,var(--line-dark) 119px,var(--line-dark) 120px); -webkit-mask-image:radial-gradient(120% 100% at 50% 40%,#000 30%,transparent 78%); mask-image:radial-gradient(120% 100% at 50% 40%,#000 30%,transparent 78%); }
+
+.pay-hero .wrap { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+
+.pay-hero-left .kicker { margin-bottom:1.4rem; }
+.pay-hero-left h1 { font-size:clamp(2.8rem,5.5vw,4.6rem); color:var(--ivory); margin-bottom:1.4rem; }
+.pay-hero-left h1 em { font-style:italic; color:var(--gold-light); }
+.pay-hero-left p { font-size:clamp(1rem,1.4vw,1.18rem); color:var(--on-dark-mute); max-width:46ch; line-height:1.65; margin-bottom:1.6rem; }
+.pay-hero-left .cred { padding:1.1rem 1.4rem; border:1px solid var(--line-dark); display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem; }
+.pay-hero-left .cred-row { display:flex; align-items:center; gap:0.7rem; font-size:0.85rem; color:var(--on-dark-mute); }
+.pay-hero-left .cred-row::before { content:"✦"; color:var(--gold); font-size:0.6em; }
+.pay-hero-left .cred-row strong { color:var(--on-dark); font-weight:600; }
+
+/* Right: anchor scroll card */
+.pay-hero-right { display:flex; flex-direction:column; gap:0; }
+.mini-pkg-pick { display:flex; flex-direction:column; gap:1rem; }
+.mini-card {
+  border:1px solid var(--line-dark); padding:1.3rem 1.5rem;
+  display:flex; align-items:center; gap:1.2rem;
+  cursor:pointer; transition:all 0.4s var(--e-out);
+  background:rgba(236,230,216,0.03);
+  text-decoration:none; color:var(--on-dark);
+}
+.mini-card:hover { border-color:var(--gold); background:rgba(236,230,216,0.07); transform:translateX(6px); }
+.mini-card.flagship { border-color:var(--gold-deep); background:linear-gradient(120deg,rgba(132,17,31,0.28),rgba(67,9,15,0.12)); }
+.mini-card.flagship:hover { border-color:var(--gold-light); }
+.mini-card-icon { width:42px; height:42px; border:1px solid var(--line-dark); display:grid; place-items:center; flex-shrink:0; font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--gold-light); }
+.mini-card.flagship .mini-card-icon { border-color:var(--gold-deep); background:var(--oxblood-2); }
+.mini-card-body { flex:1; }
+.mini-card-name { font-family:var(--serif); font-size:1.05rem; color:var(--ivory); line-height:1.2; margin-bottom:0.2rem; }
+.mini-card-price { font-family:var(--serif); font-style:italic; font-size:0.88rem; color:var(--gold-light); }
+.mini-card-arrow { color:var(--gold-deep); font-size:1.1rem; transition:transform 0.4s var(--e-out); }
+.mini-card:hover .mini-card-arrow { transform:translateX(5px); }
+.mini-note { text-align:center; margin-top:0.8rem; font-size:0.78rem; color:var(--on-dark-mute); letter-spacing:0.04em; }
+
+/* ================================================================
+   TRUST BAR (light band)
+   ================================================================ */
+.trust-bar { background:var(--ivory-2); border-block:1px solid var(--line-light); padding:2.2rem var(--gutter); }
+.trust-bar-inner { max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:center; gap:clamp(2rem,5vw,5rem); flex-wrap:wrap; }
+.trust-item { display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+.trust-num { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.4rem); color:var(--crimson); line-height:1; }
+.trust-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--on-light-mute); font-weight:600; text-align:center; max-width:120px; line-height:1.4; }
+.trust-sep { width:1px; height:48px; background:var(--line-light); }
+
+/* ================================================================
+   PACKAGE SELECTOR (main conversion section)
+   ================================================================ */
+.pkg-selector { background:var(--ink); color:var(--on-dark); padding-block:clamp(5rem,9vw,8rem); position:relative; overflow:hidden; }
+.pkg-selector::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:0.38; background-image:repeating-linear-gradient(90deg,transparent,transparent 159px,var(--line-dark) 159px,var(--line-dark) 160px); -webkit-mask-image:linear-gradient(#000,transparent); mask-image:linear-gradient(#000,transparent); }
+.pkg-selector .wrap { position:relative; z-index:2; }
+
+.pkg-selector-head { text-align:center; margin-bottom:clamp(3rem,5vw,5rem); }
+.pkg-selector-head .kicker { justify-content:center; margin-bottom:1rem; }
+.pkg-selector-head h2 { font-size:clamp(2.2rem,5vw,3.6rem); color:var(--ivory); margin-bottom:1rem; }
+.pkg-selector-head h2 em { color:var(--gold-light); font-style:italic; }
+.pkg-selector-head p { color:var(--on-dark-mute); max-width:52ch; margin:0 auto; font-size:1.05rem; }
+
+/* Step indicator */
+.steps-indicator { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:clamp(2.5rem,4vw,4rem); }
+.step-ind { display:flex; align-items:center; gap:0.7rem; }
+.step-ind-num { width:36px; height:36px; border-radius:50%; border:1.5px solid var(--line-dark); display:grid; place-items:center; font-family:var(--serif); font-size:1rem; color:var(--on-dark-mute); transition:all 0.4s; }
+.step-ind-num.active { border-color:var(--gold); color:var(--gold-light); background:rgba(195,154,62,0.1); }
+.step-ind-num.done { border-color:var(--gold-deep); background:var(--gold-deep); color:var(--ink); }
+.step-ind-label { font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--on-dark-mute); transition:color 0.4s; }
+.step-ind-label.active { color:var(--gold-light); }
+.step-connector { width:clamp(2.5rem,6vw,6rem); height:1px; background:var(--line-dark); margin:0 1rem; }
+
+/* ================================================================
+   STEP 1: Package cards
+   ================================================================ */
+#step-1 { transition:opacity 0.4s,transform 0.4s; }
+#step-1.hidden { opacity:0; pointer-events:none; height:0; overflow:hidden; }
+
+.pkg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-bottom:2rem; }
+
+.pkg-card {
+  border:1.5px solid var(--line-dark); padding:clamp(1.8rem,2.5vw,2.5rem);
+  display:flex; flex-direction:column;
+  cursor:pointer; position:relative; overflow:hidden;
+  background:rgba(236,230,216,0.02);
+  transition:all 0.45s var(--e-out);
+  user-select:none;
+}
+.pkg-card:hover { border-color:var(--gold-deep); background:rgba(236,230,216,0.05); transform:translateY(-5px); }
+.pkg-card.selected { border-color:var(--gold); background:linear-gradient(165deg,rgba(132,17,31,0.22),rgba(67,9,15,0.1)); box-shadow:0 0 0 1px var(--gold-deep) inset, 0 24px 48px -16px rgba(195,154,62,0.2); transform:translateY(-5px); }
+.pkg-card.flagship-card { background:linear-gradient(165deg,rgba(132,17,31,0.35),rgba(67,9,15,0.15)); border-color:var(--gold-deep); }
+.pkg-card.flagship-card:hover { border-color:var(--gold-light); }
+.pkg-card.flagship-card.selected { border-color:var(--gold-light); box-shadow:0 0 0 1px var(--gold) inset, 0 24px 48px -16px rgba(195,154,62,0.3); }
+
+/* Gold top line on selected */
+.pkg-card::after { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold-deep),var(--gold-light),var(--gold-deep)); opacity:0; transition:opacity 0.4s; }
+.pkg-card.selected::after { opacity:1; }
+.pkg-card.flagship-card::after { opacity:0.5; }
+.pkg-card.flagship-card.selected::after { opacity:1; }
+
+/* Selection radio circle */
+.pkg-card-select { position:absolute; top:1.2rem; right:1.2rem; width:22px; height:22px; border-radius:50%; border:1.5px solid var(--line-dark); transition:all 0.4s; display:grid; place-items:center; }
+.pkg-card.selected .pkg-card-select { border-color:var(--gold); background:var(--gold); }
+.pkg-card-select-dot { width:8px; height:8px; border-radius:50%; background:var(--ink); opacity:0; transform:scale(0); transition:all 0.3s; }
+.pkg-card.selected .pkg-card-select-dot { opacity:1; transform:scale(1); }
+
+.pkg-ribbon { display:inline-block; align-self:flex-start; font-size:0.64rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); background:var(--gold-light); padding:0.38em 0.85em; font-weight:700; margin-bottom:1rem; }
+.pkg-card-tag { font-family:var(--serif); font-style:italic; color:var(--gold-light); font-size:0.92rem; margin-bottom:0.6rem; }
+.pkg-card-name { font-size:clamp(1.4rem,2vw,1.85rem); color:var(--ivory); margin-bottom:0.4rem; line-height:1.1; }
+.pkg-card-price { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,2.2vw,2rem); color:var(--gold-light); margin-bottom:0.3rem; }
+.pkg-card-price .suf { font-family:var(--sans); font-style:normal; font-size:0.72rem; color:var(--on-dark-mute); margin-left:0.2em; font-weight:500; }
+.pkg-card-sessions { font-size:0.82rem; font-weight:600; color:var(--on-dark-mute); margin-bottom:1rem; }
+.pkg-card-desc { font-size:0.9rem; color:var(--on-dark-mute); line-height:1.62; margin-bottom:1.4rem; flex:1; }
+.pkg-card-features { list-style:none; border-top:1px solid var(--line-dark); padding-top:1rem; display:flex; flex-direction:column; gap:0.55rem; }
+.pkg-card-features li { font-size:0.85rem; color:var(--on-dark); display:flex; gap:0.6rem; align-items:flex-start; }
+.pkg-card-features li::before { content:"·"; color:var(--gold); font-weight:700; flex-shrink:0; }
+
+/* Addons for Targeted Support */
+.addon-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line-dark); margin-top:1rem; padding-top:1rem; }
+.addon-item { font-size:0.82rem; color:var(--on-dark); padding:0.4rem 0; display:flex; align-items:flex-start; gap:0.5rem; line-height:1.4; }
+.addon-item::before { content:"·"; color:var(--gold); font-weight:700; flex-shrink:0; }
+.addon-price { font-family:var(--serif); font-style:italic; font-size:0.78rem; color:var(--gold-light); }
+
+/* ================================================================
+   STEP 2: Confirm + info form
+   ================================================================ */
+#step-2 { display:none; }
+#step-2.visible { display:block; }
+
+.confirm-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:3rem; align-items:start; }
+
+/* Left: summary card */
+.confirm-summary { position:sticky; top:calc(var(--banner-h) + 5rem); }
+.confirm-pkg-card { border:1px solid var(--gold-deep); background:linear-gradient(165deg,rgba(132,17,31,0.3),rgba(67,9,15,0.12)); padding:2.2rem; position:relative; overflow:hidden; }
+.confirm-pkg-card::after { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold-deep),var(--gold-light),var(--gold-deep)); }
+.confirm-tag { font-family:var(--serif); font-style:italic; color:var(--gold-light); font-size:0.9rem; margin-bottom:0.5rem; }
+.confirm-name { font-size:1.9rem; color:var(--ivory); margin-bottom:0.5rem; }
+.confirm-price { font-family:var(--serif); font-style:italic; font-size:2.2rem; color:var(--gold-light); margin-bottom:0.4rem; }
+.confirm-sessions { font-size:0.82rem; font-weight:600; color:var(--on-dark-mute); margin-bottom:1.4rem; }
+.confirm-divider { height:1px; background:var(--line-dark); margin-bottom:1.4rem; }
+.confirm-includes { list-style:none; display:flex; flex-direction:column; gap:0.7rem; margin-bottom:1.8rem; }
+.confirm-includes li { font-size:0.88rem; color:var(--on-dark); display:flex; gap:0.8rem; align-items:flex-start; line-height:1.5; }
+.confirm-includes li .ci-icon { width:18px; height:18px; border-radius:50%; background:rgba(195,154,62,0.18); border:1px solid var(--gold-deep); display:grid; place-items:center; flex-shrink:0; margin-top:1px; }
+.confirm-includes li .ci-icon svg { width:9px; height:9px; }
+
+.guarantee-chip { border:1px solid rgba(230,201,120,0.4); padding:0.9rem 1.1rem; display:flex; gap:0.9rem; align-items:flex-start; }
+.guarantee-chip-icon { color:var(--gold-light); font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+.guarantee-chip-text { font-size:0.82rem; color:var(--on-dark-mute); line-height:1.55; }
+.guarantee-chip-text strong { color:var(--gold-light); font-weight:600; }
+
+.back-link { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.82rem; color:var(--on-dark-mute); cursor:pointer; margin-top:1.4rem; transition:color 0.3s; border:none; background:none; font-family:var(--sans); }
+.back-link:hover { color:var(--gold-light); }
+.back-link svg { width:14px; height:14px; }
+
+/* Right: form + CTA */
+.confirm-form-head { margin-bottom:2rem; }
+.confirm-form-head h3 { font-size:1.8rem; color:var(--ivory); margin-bottom:0.5rem; }
+.confirm-form-head p { font-size:0.95rem; color:var(--on-dark-mute); }
+
+.form-group { margin-bottom:1.4rem; }
+.form-label { display:block; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--on-dark-mute); margin-bottom:0.55rem; }
+.form-input, .form-select {
+  width:100%; background:rgba(236,230,216,0.04); border:1px solid var(--line-dark);
+  padding:0.9rem 1.1rem; font-family:var(--sans); font-size:0.95rem; color:var(--on-dark);
+  transition:border-color 0.35s; outline:none; appearance:none; -webkit-appearance:none;
+}
+.form-input::placeholder { color:rgba(181,171,148,0.4); }
+.form-input:focus, .form-select:focus { border-color:var(--gold); }
+.form-select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c39a3e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; cursor:pointer; }
+.form-select option { background:var(--ink-2); color:var(--on-dark); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-note { font-size:0.78rem; color:var(--on-dark-mute); margin-top:0.4rem; line-height:1.5; }
+
+/* Merit calculator */
+.merit-calc { border:1px solid var(--line-dark); padding:1.5rem 1.6rem; margin-bottom:2rem; position:relative; overflow:hidden; }
+.merit-calc::before { content:""; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--gold-deep); }
+.merit-calc-head { display:flex; align-items:center; gap:0.7rem; margin-bottom:1rem; }
+.merit-calc-head h4 { font-size:1rem; color:var(--ivory); }
+.merit-calc-head span { font-family:var(--serif); font-style:italic; font-size:0.82rem; color:var(--gold-light); }
+.merit-row { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem; }
+.merit-result { background:rgba(195,154,62,0.08); border:1px solid rgba(195,154,62,0.25); padding:0.9rem 1.1rem; display:flex; justify-content:space-between; align-items:center; }
+.merit-result-label { font-size:0.82rem; color:var(--on-dark-mute); }
+.merit-result-price { font-family:var(--serif); font-style:italic; font-size:1.4rem; color:var(--gold-light); }
+.merit-result-discount { font-size:0.75rem; color:rgba(100,200,120,0.9); font-weight:600; margin-top:2px; }
+
+/* CTA button block */
+.pay-cta-block { display:flex; flex-direction:column; gap:1rem; }
+.pay-btn-primary {
+  width:100%; background:var(--gold); color:var(--ink); border:1.5px solid var(--gold-deep);
+  font-family:var(--sans); font-weight:700; font-size:1.05rem; letter-spacing:0.01em;
+  padding:1.1em 2em; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.7rem;
+  transition:all 0.45s var(--e-out); position:relative; overflow:hidden;
+}
+.pay-btn-primary::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.15) 50%,transparent 70%); transform:translateX(-100%); transition:transform 0.6s; }
+.pay-btn-primary:hover { background:var(--gold-light); transform:translateY(-3px); box-shadow:0 20px 40px -14px rgba(195,154,62,0.5); }
+.pay-btn-primary:hover::before { transform:translateX(100%); }
+.pay-btn-primary:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+.pay-btn-primary svg { width:20px; height:20px; }
+
+.pay-btn-secondary { width:100%; border:1px solid var(--line-dark); color:var(--on-dark-mute); background:transparent; font-family:var(--sans); font-weight:500; font-size:0.9rem; padding:0.85em 2em; cursor:pointer; transition:all 0.4s; text-align:center; }
+.pay-btn-secondary:hover { border-color:var(--gold-deep); color:var(--gold-light); }
+
+.security-row { display:flex; align-items:center; justify-content:center; gap:1.5rem; padding-top:0.5rem; }
+.security-item { display:flex; align-items:center; gap:0.4rem; font-size:0.74rem; color:var(--on-dark-mute); }
+.security-item svg { width:13px; height:13px; opacity:0.65; }
+
+/* ================================================================
+   STEP 3: Payment embed
+   ================================================================ */
+#step-3 { display:none; }
+#step-3.visible { display:block; }
+
+.payment-layout { display:grid; grid-template-columns:1fr 1.2fr; gap:3rem; align-items:start; }
+.payment-sidebar { position:sticky; top:calc(var(--banner-h) + 5rem); }
+.payment-sidebar-pkg { border:1px solid var(--gold-deep); background:linear-gradient(165deg,rgba(132,17,31,0.28),rgba(67,9,15,0.12)); padding:2rem; margin-bottom:1.5rem; position:relative; overflow:hidden; }
+.payment-sidebar-pkg::after { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold-deep),var(--gold-light),var(--gold-deep)); }
+.sidebar-tag { font-family:var(--serif); font-style:italic; color:var(--gold-light); font-size:0.88rem; margin-bottom:0.5rem; }
+.sidebar-name { font-size:1.6rem; color:var(--ivory); margin-bottom:0.4rem; }
+.sidebar-price { font-family:var(--serif); font-style:italic; font-size:1.9rem; color:var(--gold-light); margin-bottom:0.3rem; }
+.sidebar-sessions { font-size:0.8rem; font-weight:600; color:var(--on-dark-mute); margin-bottom:1.2rem; }
+.sidebar-items { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
+.sidebar-items li { font-size:0.84rem; color:var(--on-dark); display:flex; gap:0.6rem; align-items:flex-start; }
+.sidebar-items li::before { content:"·"; color:var(--gold); font-weight:700; flex-shrink:0; }
+
+.payment-next-steps { border:1px solid var(--line-dark); padding:1.5rem 1.6rem; }
+.payment-next-steps h4 { font-size:0.88rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--on-dark-mute); margin-bottom:1rem; font-family:var(--sans); font-weight:700; }
+.next-step-list { list-style:none; display:flex; flex-direction:column; gap:0.9rem; }
+.next-step-item { display:flex; gap:0.9rem; align-items:flex-start; }
+.next-step-num { width:22px; height:22px; border-radius:50%; border:1px solid var(--gold-deep); color:var(--gold-light); font-family:var(--serif); font-size:0.82rem; display:grid; place-items:center; flex-shrink:0; margin-top:1px; }
+.next-step-text { font-size:0.84rem; color:var(--on-dark-mute); line-height:1.5; }
+.next-step-text strong { color:var(--on-dark); font-weight:600; }
+
+/* Main Stripe embed area */
+.payment-header { margin-bottom:2rem; }
+.payment-header h3 { font-size:1.7rem; color:var(--ivory); margin-bottom:0.5rem; }
+.payment-header p { font-size:0.92rem; color:var(--on-dark-mute); }
+
+.stripe-container { border:1px solid var(--line-dark); background:rgba(236,230,216,0.02); overflow:hidden; }
+
+/* Stripe embed iframe */
+.stripe-embed {
+  width:100%; min-height:680px; border:none; display:block;
+  background:transparent;
+}
+
+/* Open-in-new-tab CTA for Stripe */
+.stripe-open-btn {
+  display:flex; align-items:center; justify-content:center; gap:0.7rem;
+  width:100%; background:var(--gold); color:var(--ink);
+  border:none; font-family:var(--sans); font-weight:700; font-size:1.1rem;
+  padding:1.2em 2em; cursor:pointer; transition:all 0.45s var(--e-out);
+  position:relative; overflow:hidden; text-decoration:none;
+}
+.stripe-open-btn::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.15) 50%,transparent 70%); transform:translateX(-100%); transition:transform 0.6s; }
+.stripe-open-btn:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 20px 40px -14px rgba(195,154,62,0.5); }
+.stripe-open-btn:hover::before { transform:translateX(100%); }
+.stripe-open-btn svg { width:20px; height:20px; }
+
+.stripe-fallback { padding:2.5rem 2rem; text-align:center; }
+.stripe-fallback p { font-size:0.88rem; color:var(--on-dark-mute); margin-bottom:1.5rem; }
+.stripe-or { display:flex; align-items:center; gap:1rem; margin:1.5rem 0; }
+.stripe-or::before,.stripe-or::after { content:""; flex:1; height:1px; background:var(--line-dark); }
+.stripe-or span { font-size:0.75rem; color:var(--on-dark-mute); letter-spacing:0.1em; text-transform:uppercase; }
+
+.stripe-note { padding:1.2rem 1.6rem; background:rgba(236,230,216,0.03); border-top:1px solid var(--line-dark); display:flex; align-items:center; gap:1.2rem; }
+.stripe-note-icon { color:var(--gold-deep); font-size:1.1rem; flex-shrink:0; }
+.stripe-note-text { font-size:0.78rem; color:var(--on-dark-mute); line-height:1.55; }
+.stripe-note-text strong { color:var(--on-dark); }
+
+/* ================================================================
+   FAQ STRIP
+   ================================================================ */
+.faq-strip { background:var(--ivory-2); border-top:1px solid var(--line-light); padding-block:clamp(4rem,7vw,6rem); }
+.faq-strip .wrap { display:grid; grid-template-columns:1fr 1.6fr; gap:5rem; align-items:start; }
+.faq-left h2 { font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem; }
+.faq-left p { font-size:0.95rem; color:var(--on-light-mute); margin-bottom:1.6rem; line-height:1.65; }
+.faq-contact { display:inline-flex; align-items:center; gap:0.6rem; font-family:var(--sans); font-size:0.88rem; font-weight:600; color:var(--crimson); border-bottom:1px solid var(--crimson); padding-bottom:2px; }
+.faq-contact:hover { color:var(--oxblood); border-color:var(--oxblood); }
+.faq-list { display:flex; flex-direction:column; gap:0; }
+.faq-item { border-bottom:1px solid var(--line-light); }
+.faq-item:first-child { border-top:1px solid var(--line-light); }
+.faq-q { width:100%; background:none; border:none; padding:1.4rem 0; display:flex; align-items:center; justify-content:space-between; gap:1rem; cursor:pointer; font-family:var(--serif); font-size:1.1rem; color:var(--on-light); text-align:left; transition:color 0.3s; }
+.faq-q:hover { color:var(--crimson); }
+.faq-q-icon { width:24px; height:24px; border:1.5px solid var(--line-light); border-radius:50%; display:grid; place-items:center; flex-shrink:0; transition:all 0.4s; color:var(--on-light-mute); }
+.faq-item.open .faq-q-icon { background:var(--crimson); border-color:var(--crimson); color:white; transform:rotate(45deg); }
+.faq-a { font-size:0.92rem; color:var(--on-light-mute); line-height:1.7; max-height:0; overflow:hidden; transition:max-height 0.5s var(--e-out), padding 0.4s; }
+.faq-item.open .faq-a { max-height:300px; padding-bottom:1.4rem; }
+
+/* ================================================================
+   FOOTER CTA
+   ================================================================ */
+.pay-footer-cta { background:linear-gradient(160deg,var(--oxblood) 0%,var(--ink) 100%); color:var(--on-dark); text-align:center; padding-block:clamp(4rem,7vw,6rem); position:relative; overflow:hidden; }
+.pay-footer-cta::before { content:""; position:absolute; inset:0; opacity:0.38; background-image:repeating-linear-gradient(90deg,transparent,transparent 119px,var(--line-dark) 119px,var(--line-dark) 120px); -webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent 75%); mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent 75%); }
+.pay-footer-cta .wrap { position:relative; z-index:2; max-width:660px; }
+.pay-footer-cta .kicker { justify-content:center; margin-bottom:1.2rem; }
+.pay-footer-cta h2 { font-size:clamp(2rem,4.5vw,3.5rem); color:var(--ivory); margin-bottom:1rem; }
+.pay-footer-cta h2 em { font-style:italic; color:var(--gold-light); }
+.pay-footer-cta p { color:var(--on-dark-mute); font-size:1rem; max-width:46ch; margin:0 auto 2.2rem; line-height:1.7; }
+.pay-footer-cta-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer { background:var(--oxblood-2); color:var(--on-dark-mute); padding-block:3.5rem; }
+footer .wrap { display:flex; justify-content:space-between; gap:2rem; flex-wrap:wrap; align-items:center; }
+footer .brand { color:var(--ivory); }
+footer .fnav { display:flex; gap:1.5rem; font-size:0.86rem; flex-wrap:wrap; }
+footer a { transition:color 0.3s; }
+footer a:hover { color:var(--gold-light); }
+footer .legal { width:100%; border-top:1px solid var(--line-dark); padding-top:1.5rem; margin-top:0.5rem; font-size:0.78rem; display:flex; justify-content:space-between; gap:0.5rem; flex-wrap:wrap; }
+
+/* ================================================================
+   MOTION / REVEAL
+   ================================================================ */
+.reveal { opacity:1; transform:none; }
+html.js .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s var(--e-out),transform 0.9s var(--e-out); }
+html.js .reveal.in { opacity:1; transform:none; }
+[data-d="1"] { transition-delay:0.08s; }
+[data-d="2"] { transition-delay:0.16s; }
+[data-d="3"] { transition-delay:0.24s; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:980px) {
+  .pay-hero .wrap { grid-template-columns:1fr; gap:3rem; }
+  .confirm-layout { grid-template-columns:1fr; }
+  .confirm-summary { position:static; }
+  .payment-layout { grid-template-columns:1fr; }
+  .payment-sidebar { position:static; }
+  .pkg-cards { grid-template-columns:1fr; gap:1rem; }
+  .faq-strip .wrap { grid-template-columns:1fr; gap:2.5rem; }
+}
+@media (max-width:720px) {
+  .form-row { grid-template-columns:1fr; }
+  .merit-row { grid-template-columns:1fr; }
+  .trust-sep { display:none; }
+  .nav-links {
+    position:fixed; top:0; left:0; right:0; width:100%; height:100vh; height:100dvh;
+    flex-direction:column; justify-content:center; align-items:stretch; gap:0;
+    padding:5.5rem var(--gutter) max(2.5rem,env(safe-area-inset-bottom));
+    background:radial-gradient(120% 70% at 85% 0%,rgba(132,17,31,0.42),transparent 55%), linear-gradient(165deg,var(--ink) 0%,var(--oxblood-2) 100%);
+    color:var(--on-dark); opacity:0; visibility:hidden; transform:translateY(-12px);
+    transition:opacity 0.45s var(--e-out),visibility 0.45s var(--e-out),transform 0.5s var(--e-out);
+    z-index:var(--z-menu);
+  }
+  .nav-links.open { opacity:1; visibility:visible; transform:none; }
+  .menu-label { display:block; font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1.6rem; }
+  .nav-links a:not(.btn):not(.menu-contact) { font-family:var(--serif); font-size:clamp(1.9rem,8vw,2.5rem); font-weight:500; color:var(--ivory); text-align:left; opacity:1; padding:1.05rem 0; border-top:1px solid var(--line-dark); display:flex; align-items:center; justify-content:space-between; }
+  .nav-links a:not(.btn):not(.menu-contact)::after { content:"\2197"; display:inline; position:static; width:auto; height:auto; background:none; color:var(--gold); font-family:var(--sans); font-size:1.1rem; opacity:0.7; }
+  .nav-cta { margin-top:2rem; font-size:1rem; padding:1.05em 1.8em; justify-content:center; }
+  .menu-contact { display:block; margin-top:1.8rem; font-size:0.86rem; color:var(--on-dark-mute); }
+  .nav-toggle { display:flex; z-index:calc(var(--z-menu) + 1); }
+  .nav-links.open ~ .nav-toggle span { background:var(--on-dark); }
+  .nav-links.open ~ .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .nav-links.open ~ .nav-toggle span:nth-child(2) { opacity:0; }
+  .nav-links.open ~ .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  .addon-grid { grid-template-columns:1fr; }
+  .pay-footer-cta-actions { flex-direction:column; align-items:center; }
+  .steps-indicator { gap:0.5rem; }
+  .step-connector { width:1.5rem; }
+  .step-ind-label { display:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  html.js .reveal { opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= ANNOUNCEMENT BANNER ================= -->
+<div class="announce">
+  <p class="sr-only">Spots are limited this cycle. Secure yours today.</p>
+  <div class="announce-track" aria-hidden="true">
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+    <span class="a-item">Spots are limited this cycle — we cap full-package students to protect quality.<span class="a-sep">&#10022;</span></span>
+  </div>
+</div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="brand"><b>NoVa&nbsp;<i>Elite</i></b></a>
+  <div class="nav-links" id="navLinks">
+    <span class="menu-label">Navigate</span>
+    <a href="index.html#edge">Why Us</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#guarantee">Guarantee</a>
+    <a href="index.html#team">Advisors</a>
+    <a href="https://calendly.com/novaelitecollegeconsulting/30min" class="btn btn-gold nav-cta">Free Consult</a>
+    <a class="menu-contact" href="mailto:novaelitecollegeconsulting@gmail.com">novaelitecollegeconsulting@gmail.com</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="pay-hero on-dark">
+  <div class="wrap">
+    <div class="pay-hero-left reveal">
+      <div class="kicker">Secure your spot</div>
+      <h1>Claim your<br /><em>admissions edge.</em></h1>
+      <p>Select a package below, and we'll be in touch within 24 hours to schedule your first session. Spots are capped — once they're gone, they're gone for this cycle.</p>
+      <div class="cred">
+        <div class="cred-row"><strong>T20 guarantee</strong> on qualifying stats + ECs</div>
+        <div class="cred-row"><strong>Merit-based pricing</strong> — strong stats earn a discount</div>
+        <div class="cred-row"><strong>All three advisors</strong> on your application, not just one</div>
+        <div class="cred-row"><strong>NOVA-local</strong> — we know your schools, programs, and culture</div>
+      </div>
+    </div>
+    <div class="pay-hero-right reveal" data-d="1">
+      <div class="mini-pkg-pick">
+        <a href="#pkg-selector" class="mini-card flagship" onclick="smoothTo('pkg-selector')">
+          <div class="mini-card-icon">F</div>
+          <div class="mini-card-body">
+            <div class="mini-card-name">Full Application Partner</div>
+            <div class="mini-card-price">$1,499–$2,499 Base pricing • 20 sessions</div>
+          </div>
+          <div class="mini-card-arrow">→</div>
+        </a>
+        <a href="#pkg-selector" class="mini-card" onclick="smoothTo('pkg-selector')">
+          <div class="mini-card-icon">L</div>
+          <div class="mini-card-body">
+            <div class="mini-card-name">The Long Game</div>
+            <div class="mini-card-price">$949 At Most · 12 sessions</div>
+          </div>
+          <div class="mini-card-arrow">→</div>
+        </a>
+        <a href="#pkg-selector" class="mini-card" onclick="smoothTo('pkg-selector')">
+          <div class="mini-card-icon">À</div>
+          <div class="mini-card-body">
+            <div class="mini-card-name">Targeted Support</div>
+            <div class="mini-card-price">$250 / hr · À la carte</div>
+          </div>
+          <div class="mini-card-arrow">→</div>
+        </a>
+        <div class="mini-note">Not sure? <a href="https://calendly.com/novaelitecollegeconsulting/30min" style="color:var(--gold-light);text-decoration:underline;text-underline-offset:3px;">Book a free consult first →</a></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TRUST BAR ================= -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-num">3</div>
+      <div class="trust-label">Advisors at your side</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">45+</div>
+      <div class="trust-label">Top-school acceptances on our team</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">$2M+</div>
+      <div class="trust-label">Scholarships offered to our advisors</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">T20</div>
+      <div class="trust-label">Guaranteed for qualifying students</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">NOVA-local, 2025 cycle</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PACKAGE SELECTOR ================= -->
+<section class="pkg-selector" id="pkg-selector">
+  <div class="wrap">
+
+    <div class="pkg-selector-head reveal">
+      <div class="kicker">Choose your package</div>
+      <h2>The right plan for<br /><em>where you are.</em></h2>
+      <p>Select the package that fits your situation. Every package includes your free intro consult and full access to all three advisors.</p>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="steps-indicator reveal">
+      <div class="step-ind">
+        <div class="step-ind-num active" id="ind-1">1</div>
+        <div class="step-ind-label active" id="ind-1-label">Choose package</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-ind">
+        <div class="step-ind-num" id="ind-2">2</div>
+        <div class="step-ind-label" id="ind-2-label">Your details</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-ind">
+        <div class="step-ind-num" id="ind-3">3</div>
+        <div class="step-ind-label" id="ind-3-label">Secure payment</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Pick a package -->
+    <div id="step-1">
+      <div class="pkg-cards">
+
+        <!-- Full Application Partner -->
+        <div class="pkg-card flagship-card reveal" data-pkg="flagship" onclick="selectPkg(this)">
+          <div class="pkg-card-select"><div class="pkg-card-select-dot"></div></div>
+          <div class="pkg-ribbon">Flagship</div>
+          <div class="pkg-card-tag">Seniors · comprehensive</div>
+          <div class="pkg-card-name">Full Application Partner</div>
+          <div class="pkg-card-price">$1,499–$2,499 <span class="suf">Base pricing varies by tier</span></div>
+          <div class="pkg-card-sessions">(20 sessions, 24/7 support)</div>
+          <div class="pkg-card-desc">All three advisors, working with you across your entire senior cycle. Unlimited essay reviews and around-the-clock support from now until decision day.</div>
+          <ul class="pkg-card-features">
+            <li>School list generation + ED/EA/RD plan</li>
+            <li>Personal statement ideation + EC refinement</li>
+            <li>Supplemental essays — ideation through final draft</li>
+            <li>Panel review by all three advisors</li>
+            <li>Interview prep included</li>
+            <li>Unlimited async essay rounds</li>
+          </ul>
+          <div id="flagship-tier-wrap" style="margin-top:1rem;">
+            <label for="flagship-tier" style="display:block; margin-bottom:0.45rem; font-size:0.95rem; font-weight:800; color:#c89b2b; text-shadow:none;">Choose your tier</label>
+            <select id="flagship-tier" onchange="updateFlagshipTierSelection()" style="width:100%; border:1px solid #d8c07c; border-radius:999px; padding:0.8rem 1rem; background:#fffdf7; color:#1f1f1f; font-size:0.95rem;">
+              <option value="bronze" data-label="Bronze" data-price="$1,499" data-hours="10 hours">Bronze — $1,499 • 10 hours</option>
+              <option value="silver" data-label="Silver" data-price="$1,949" data-hours="20 hours">Silver — $1,949 • 20 hours</option>
+              <option value="gold" data-label="Gold" data-price="$2,499" data-hours="Unlimited hours">Gold — $2,499 • Unlimited hours</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- The Long Game -->
+        <div class="pkg-card reveal" data-pkg="longgame" data-d="1" onclick="selectPkg(this)">
+          <div class="pkg-card-select"><div class="pkg-card-select-dot"></div></div>
+          <div class="pkg-card-tag">Underclassmen · comprehensive</div>
+          <div class="pkg-card-name">The Long Game</div>
+          <div class="pkg-card-price">$949 <span class="suf">At Most</span></div>
+          <div class="pkg-card-sessions">(12 sessions)</div>
+          <div class="pkg-card-desc">Start crafting an elite profile early. Dedicated strategy and story-driven planning for 9th–11th graders who want a T20 profile, not just a T20 application.</div>
+          <ul class="pkg-card-features">
+            <li>Class schedule + course selection</li>
+            <li>SAT / ACT tutoring</li>
+            <li>Summer & Governor's School program help</li>
+            <li>Extracurricular strategization</li>
+            <li>Long-term roadmap to a Top-20 profile</li>
+          </ul>
+        </div>
+
+        <!-- Targeted Support -->
+        <div class="pkg-card reveal" data-pkg="targeted" data-d="2" onclick="selectPkg(this)">
+          <div class="pkg-card-select"><div class="pkg-card-select-dot"></div></div>
+          <div class="pkg-card-tag">À la carte</div>
+          <div class="pkg-card-name">Targeted Support</div>
+          <div class="pkg-card-price">$250 <span class="suf">/ hr</span></div>
+          <div class="pkg-card-sessions">(per session)</div>
+          <div class="pkg-card-desc">Already strong — just need sharp eyes on a specific piece? Work through exactly what you need with an advisor, one focused session at a time.</div>
+          <div class="addon-grid">
+            <div class="addon-item">Live essay reviews<div class="addon-price">or $0.80/word</div></div>
+            <div class="addon-item">Async essay edits<div class="addon-price">or $0.40/word</div></div>
+            <div class="addon-item">SAT / ACT tutoring</div>
+            <div class="addon-item">Summer program help</div>
+            <div class="addon-item">Application Q&As</div>
+            <div class="addon-item">School-list consults</div>
+          </div>
+          <div id="targeted-option-wrap" style="margin-top:1rem;">
+            <label for="targeted-option" style="display:block; margin-bottom:0.45rem; font-size:0.95rem; font-weight:800; color:#c89b2b;">Choose your service</label>
+            <select id="targeted-option" onchange="updateTargetedOptionSelection()" style="width:100%; border:1px solid #d8c07c; border-radius:999px; padding:0.8rem 1rem; background:#fffdf7; color:#1f1f1f; font-size:0.95rem;">
+              <option value="live-essay-reviews" data-label="Live essay reviews and edits" data-price="$250/hr" data-sessions="1 session">Live essay reviews and edits — $250/hr • 1 session</option>
+              <option value="async-essay-reviews" data-label="Asynchronous essay reviews and edits" data-price="$250/hr" data-sessions="1 session">Asynchronous essay reviews and edits — $250/hr • 1 session</option>
+              <option value="sat-act-tutoring" data-label="Live SAT / ACT tutoring" data-price="$250/hr" data-sessions="1 session">Live SAT / ACT tutoring — $250/hr • 1 session</option>
+              <option value="summer-gov-school-help" data-label="Summer & Gov-school application help" data-price="$250/hr" data-sessions="1 session">Summer &amp; Gov-school application help — $250/hr • 1 session</option>
+              <option value="application-qna" data-label="Live application Q&amp;A sessions" data-price="$250/hr" data-sessions="1 session">Live application Q&amp;A sessions — $250/hr • 1 session</option>
+              <option value="school-list-consults" data-label="Live school-list & decision-plan consults" data-price="$250/hr" data-sessions="1 session">Live school-list &amp; decision-plan consults — $250/hr • 1 session</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Proceed CTA -->
+      <div style="text-align:center; margin-top:0.5rem;">
+        <button class="pay-btn-primary" id="step1-next" onclick="goToStep2()" disabled style="max-width:420px;margin:0 auto;">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4l6 6-6 6M4 10h12"/></svg>
+          Continue with this package
+        </button>
+        <div class="mini-note" style="margin-top:1rem;">Select a package above to continue</div>
+      </div>
+    </div><!-- /step-1 -->
+
+    <!-- STEP 2: Your details + merit calculator -->
+    <div id="step-2">
+      <div class="confirm-layout">
+
+        <!-- Left: order summary -->
+        <div class="confirm-summary">
+          <div class="confirm-pkg-card" id="confirm-pkg-display">
+            <!-- filled by JS -->
+          </div>
+          <div class="guarantee-chip">
+            <div class="guarantee-chip-icon">✦</div>
+            <div class="guarantee-chip-text"><strong>T20 Guarantee:</strong> Hit qualifying stats and ECs, commit to the work, and we guarantee a Top-20 acceptance. Merit awards also scale your price down automatically.</div>
+          </div>
+          <button class="back-link" onclick="goToStep1()">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 2L4 7l5 5"/></svg>
+            Change package
+          </button>
+        </div>
+
+        <!-- Right: form -->
+        <div class="confirm-form-col">
+          <div class="confirm-form-head">
+            <h3>Just a few details.</h3>
+            <p>We'll confirm your package, calculate any merit discounts, and send you directly to secure checkout.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-first">First name</label>
+              <input class="form-input" id="f-first" type="text" placeholder="Alex" autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-last">Last name</label>
+              <input class="form-input" id="f-last" type="text" placeholder="Chen" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-email">Email address</label>
+            <input class="form-input" id="f-email" type="email" placeholder="alex@email.com" autocomplete="email" />
+            <div class="form-note">We'll send your receipt and onboarding info here.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-grade">Current grade</label>
+              <select class="form-select" id="f-grade">
+                <option value="">Select grade</option>
+                <option value="9">9th grade</option>
+                <option value="10">10th grade</option>
+                <option value="11">11th grade</option>
+                <option value="12">12th grade / Senior</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-school">High school</label>
+              <input class="form-input" id="f-school" type="text" placeholder="e.g., Riverside High School" />
+            </div>
+          </div>
+
+          <!-- Merit calculator -->
+          <div class="merit-calc">
+            <div class="merit-calc-head">
+              <h4>Merit discount calculator</h4>
+              <span>Optional — unlocks your discount</span>
+            </div>
+            <div class="merit-row">
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label" for="f-gpa">Weighted GPA</label>
+                <input class="form-input" id="f-gpa" type="number" step="0.01" min="0" max="4" placeholder="e.g. 3.92" oninput="calcMerit()" />
+              </div>
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label" for="f-sat">SAT score (or ACT)</label>
+                <input class="form-input" id="f-sat" type="number" min="400" max="1600" placeholder="e.g. 1510" oninput="calcMerit()" />
+              </div>
+            </div>
+            <div class="merit-result" id="merit-result" style="display:none">
+              <div>
+                <div class="merit-result-label">Your estimated price</div>
+                <div class="merit-result-discount" id="merit-discount-label"></div>
+              </div>
+              <div class="merit-result-price" id="merit-price-display"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-promo">Promo code <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input class="form-input" id="f-promo" type="text" oninput="validatePromoCode()" style="text-transform:uppercase;" />
+            <div class="form-note" id="promo-message" style="display:none;margin-top:0.4rem;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-note">Anything we should know? <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <textarea class="form-input" id="f-note" rows="3" style="resize:vertical;line-height:1.6;"></textarea>
+          </div>
+
+          <div class="pay-cta-block">
+            <button class="pay-btn-primary" id="step2-next" onclick="goToStep3()">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="11" rx="1"/><path d="M7 6V5a3 3 0 016 0v1"/></svg>
+              Proceed to secure payment
+            </button>
+            <div class="security-row">
+              <div class="security-item">
+                <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1L2 3v4c0 2.5 2 4.5 4.5 5 2.5-.5 4.5-2.5 4.5-5V3L6.5 1z"/></svg>
+                Secured by Stripe
+              </div>
+              <div class="security-item">
+                <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="9" height="7" rx="1"/><path d="M4 5V4a2.5 2.5 0 015 0v1"/></svg>
+                256-bit SSL
+              </div>
+              <div class="security-item">
+                <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7l3 3 6-6"/></svg>
+                No hidden fees
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /step-2 -->
+
+    <!-- STEP 3: Stripe payment -->
+    <div id="step-3">
+      <div class="payment-layout">
+
+        <!-- Sidebar: package recap + next steps -->
+        <div class="payment-sidebar">
+          <div class="payment-sidebar-pkg" id="payment-sidebar-pkg">
+            <!-- filled by JS -->
+          </div>
+          <div class="payment-next-steps">
+            <h4>What happens next</h4>
+            <ul class="next-step-list">
+              <li class="next-step-item">
+                <div class="next-step-num">1</div>
+                <div class="next-step-text"><strong>Complete payment below.</strong> Stripe sends a receipt to your email instantly.</div>
+              </li>
+              <li class="next-step-item">
+                <div class="next-step-num">2</div>
+                <div class="next-step-text"><strong>We reach out within 24 hours</strong> to schedule your first session and match you with your lead advisor.</div>
+              </li>
+              <li class="next-step-item">
+                <div class="next-step-num">3</div>
+                <div class="next-step-text"><strong>First session kicks off.</strong> We assess your profile honestly and build your personalised game plan.</div>
+              </li>
+              <li class="next-step-item">
+                <div class="next-step-num">4</div>
+                <div class="next-step-text"><strong>Work begins.</strong> School list, essays, ECs — we're in your corner from here to decision day.</div>
+              </li>
+            </ul>
+          </div>
+          <button class="back-link" onclick="goToStep2()">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 2L4 7l5 5"/></svg>
+            Back to details
+          </button>
+        </div>
+
+        <!-- Main: Stripe embed -->
+        <div class="payment-main">
+          <div class="payment-header">
+            <h3>Complete your payment.</h3>
+            <p>Powered by Stripe. Your card details never touch our servers.</p>
+          </div>
+          <div class="stripe-container">
+
+            <!-- Primary: embedded Stripe payment link -->
+            <iframe
+              id="stripe-iframe"
+              class="stripe-embed"
+              src="about:blank"
+              title="Secure payment — NoVa Elite College Consulting"
+              allow="payment"
+              loading="lazy"
+            ></iframe>
+
+            <!-- Fallback / open-in-new-tab button always shown below embed -->
+            <div class="stripe-fallback">
+              <p>Prefer to pay in a new tab? Use the button below — it opens the same secure Stripe checkout.</p>
+              <a id="stripe-open-link" href="#" target="_blank" rel="noopener" class="stripe-open-btn">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14v4H2V2h4M18 2H8m10 0v10M8 12L18 2"/></svg>
+                Pay securely via Stripe →
+              </a>
+            </div>
+            <div class="stripe-note">
+              <div class="stripe-note-icon">✦</div>
+              <div class="stripe-note-text">
+                <strong>Questions before paying?</strong> Email us at <a href="mailto:novaelitecollegeconsulting@gmail.com" style="color:var(--gold-light);text-decoration:underline;text-underline-offset:3px;">novaelitecollegeconsulting@gmail.com</a> or <a href="https://calendly.com/novaelitecollegeconsulting/30min" style="color:var(--gold-light);text-decoration:underline;text-underline-offset:3px;">book a free consult</a>. We're happy to answer anything before you commit.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /step-3 -->
+
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq-strip">
+  <div class="wrap">
+    <div class="faq-left">
+      <h2>Questions before you commit.</h2>
+      <p>We want you to feel completely confident before you pay. If anything here doesn't answer your question, reach out directly.</p>
+      <a href="mailto:novaelitecollegeconsulting@gmail.com" class="faq-contact">Email us directly →</a>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does "At Most" mean on the pricing? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">The listed price is the absolute ceiling. Your final price is determined after your intro consult — strong stats and ECs unlock merit-based discounts that can bring the price down significantly. We never charge more than the listed rate, and most students pay less.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I start with Targeted Support and upgrade later? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">Absolutely. Many students start with a single essay review or strategy session, then upgrade to a full package once they see the quality of the work. If you upgrade, we credit what you've already paid toward the package price.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the T20 guarantee, exactly? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">For students who meet qualifying academic benchmarks and extracurricular thresholds, and who commit to the full process with us, we guarantee at least one Top-20 acceptance. Specific qualifying criteria are discussed during your free intro consultation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Who will I actually be working with? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">All three of us — the founders — directly. You get a lead advisor matched to your goals, and the other two review every major piece before submission. No junior staff, no outsourced work. This is a core part of how we operate.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there a refund policy? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">If after your first session you feel it's not the right fit, we offer a full refund, no questions asked. After the first session, refunds are prorated based on sessions used. We're confident in the quality of our work — if you're not satisfied, we want to make it right.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does Stripe payment work? Is it secure? <div class="faq-q-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg></div>
+        </button>
+        <div class="faq-a">We use Stripe, the same payment processor trusted by Amazon, Google, and millions of businesses worldwide. Your card details are encrypted end-to-end and never touch our servers. Stripe uses 256-bit SSL and is PCI DSS Level 1 certified — the highest level of payment security available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER CTA ================= -->
+<section class="pay-footer-cta on-dark">
+  <div class="wrap">
+    <div class="kicker">Not ready to pay yet?</div>
+    <h2>Start with a <em>free consult.</em></h2>
+    <p>30 minutes. We'll tell you honestly where you stand, what package makes sense, and exactly what to do — no strings, no pitch, no upsell pressure.</p>
+    <div class="pay-footer-cta-actions">
+      <a href="https://calendly.com/novaelitecollegeconsulting/30min" class="btn btn-gold">Book your free consult <span class="arrow">→</span></a>
+      <a href="mailto:novaelitecollegeconsulting@gmail.com" class="btn btn-line-dark">Email us a question <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="brand"><b>NoVa Elite College Consulting</b></a>
+    <nav class="fnav">
+      <a href="index.html#edge">Why Us</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#guarantee">Guarantee</a>
+      <a href="index.html#team">Advisors</a>
+      <a href="mailto:novaelitecollegeconsulting@gmail.com">Contact</a>
+    </nav>
+    <div class="legal">
+      <span>&copy; 2026 NoVa Elite College Consulting · Northern Virginia</span>
+      <a href="mailto:novaelitecollegeconsulting@gmail.com" style="text-decoration:underline;">novaelitecollegeconsulting@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  // Firebase configuration - REPLACE WITH YOUR VALUES
+const firebaseConfig = {
+    apiKey: "AIzaSyDFeVGdqvEVN2UHtDF-gwaG5g9_LQ_mvws",
+    authDomain: "nova-elite-college-consulting.firebaseapp.com",
+    projectId: "nova-elite-college-consulting",
+    storageBucket: "nova-elite-college-consulting.firebasestorage.app",
+    messagingSenderId: "108864613223",
+    appId: "1:108864613223:web:aaf107aac850f2b90e1dc2",
+    measurementId: "G-L0797EEFWP"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Make Firebase utilities available globally
+  window.firebaseDb = db;
+  window.firestoreCollection = collection;
+  window.firestoreAddDoc = addDoc;
+  window.firestoreServerTimestamp = serverTimestamp;
+  window.firestoreDoc = doc;
+  window.firestoreUpdateDoc = updateDoc;
+  window.firestoreGetDoc = getDoc;
+</script>
+
+<script>
+/* ================================================================
+   FIRESTORE INTEGRATION
+   Saves form data to Firebase Firestore
+   ================================================================ */
+async function saveFormDataToFirestore() {
+  if (!window.firebaseDb) {
+    console.error('Firebase not initialized');
+    return false;
+  }
+
+  const firstName = document.getElementById('f-first').value.trim();
+  const lastName = document.getElementById('f-last').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const grade = document.getElementById('f-grade').value;
+  const school = document.getElementById('f-school').value.trim();
+  const gpa = document.getElementById('f-gpa').value.trim();
+  const sat = document.getElementById('f-sat').value.trim();
+  const promoCode = document.getElementById('f-promo').value.trim().toUpperCase() || null;
+  const note = document.getElementById('f-note').value.trim();
+
+  const pkg = PACKAGES[selectedPkg];
+  const selectedTierLabel = selectedPkg === 'flagship' && selectedTier ? document.getElementById('flagship-tier').options[document.getElementById('flagship-tier').selectedIndex].dataset.label || selectedTier : null;
+  const selectedServiceLabel = selectedPkg === 'targeted' && selectedOption ? document.getElementById('targeted-option').options[document.getElementById('targeted-option').selectedIndex].dataset.label || selectedOption : null;
+  
+  if (!firstName || !email || !selectedPkg) {
+    console.warn('Missing required fields for Firestore save');
+    return false;
+  }
+
+  try {
+    const formData = {
+      // Personal info
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      
+      // Academic info
+      currentGrade: grade || null,
+      highSchool: school || null,
+      gpa: gpa ? parseFloat(gpa) : null,
+      satScore: sat ? parseInt(sat) : null,
+      
+      // Package info
+      selectedPackage: selectedPkg,
+      packageName: pkg.name,
+      selectedTier: selectedPkg === 'flagship' ? selectedTier : null,
+      selectedTierLabel: selectedPkg === 'flagship' ? selectedTierLabel : null,
+      selectedService: selectedPkg === 'targeted' ? selectedOption : null,
+      selectedServiceLabel: selectedPkg === 'targeted' ? selectedServiceLabel : null,
+      basePrice: pkg.basePrice,
+      finalPrice: Math.max(0, pkg.basePrice - meritDiscount),
+      meritDiscountApplied: meritDiscount - promoDiscount,
+      promoCode: promoCode,
+      promoDiscountApplied: promoDiscount,
+      
+      // Additional
+      notes: note || null,
+      submissionTime: new Date().toISOString(),
+      timestamp: window.firestoreServerTimestamp(),
+      
+      // Status tracking
+      status: 'pending_payment',
+      stripeLink: buildStripeUrl(pkg.stripe_url)
+    };
+
+    const docRef = await window.firestoreAddDoc(window.firestoreCollection(window.firebaseDb, 'payments'), formData);
+    
+    console.log('Form data saved to Firestore with ID:', docRef.id);
+    sessionStorage.setItem('novaelite_submission_id', docRef.id);
+    sessionStorage.setItem('novaelite_customer_email', email);
+    
+    return true;
+  } catch (error) {
+    console.error('Error saving to Firestore:', error);
+    return false;
+  }
+}
+
+/* ================================================================
+   PACKAGE DATA
+   Replace the stripe_url values with your real Stripe Payment Links.
+   ================================================================ */
+const PACKAGES = {
+  flagship: {
+    tag:      'Seniors · comprehensive',
+    name:     'Full Application Partner',
+    priceSuf: 'At Most',
+    sessions: '20 sessions, 24/7 support',
+    desc:     'All three advisors, working with you across your entire senior cycle. Unlimited essay reviews and 24/7 support.',
+    includes: [
+      'School list generation + ED/EA/RD plan',
+      'Personal statement ideation + EC refinement',
+      'Supplemental essays — ideation through final draft',
+      'Panel review and refinement by all three advisors',
+      'Interview prep included',
+      'Unlimited asynchronous essay rounds',
+    ],
+    tiers: {
+      bronze: {
+        label: 'Bronze',
+        basePrice: 1499,
+        hours: '10 hours',
+        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_BRONZE_LINK',
+      },
+      silver: {
+        label: 'Silver',
+        basePrice: 1949,
+        hours: '20 hours',
+        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_SILVER_LINK',
+      },
+      gold: {
+        label: 'Gold',
+        basePrice: 2499,
+        hours: 'Unlimited hours',
+        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_GOLD_LINK',
+      },
+    },
+    meritMultiplier: 50,
+  },
+  longgame: {
+    tag:      'Underclassmen · comprehensive',
+    name:     'The Long Game',
+    price:    '$949',
+    priceSuf: 'At Most',
+    sessions: '12 sessions',
+    basePrice: 949,
+    desc:     'Start crafting an elite profile early. Dedicated strategy and story-driven planning. Everything included.',
+    includes: [
+      'Class schedule & course selection help',
+      'SAT / ACT tutoring',
+      'Summer & Governor\'s School program help',
+      'Extracurricular strategization',
+      'Long-term roadmap to a Top-20 profile',
+    ],
+    stripe_url: 'https://buy.stripe.com/REPLACE_WITH_LONGGAME_LINK',
+    meritMultiplier: 25,
+  },
+  targeted: {
+    tag:      'À la carte',
+    name:     'Targeted Support',
+    price:    '$250',
+    priceSuf: '/ hr',
+    sessions: 'Per session',
+    basePrice: 250,
+    desc:     'Sharp second opinion on exactly what you need, one focused session at a time.',
+    includes: [
+      'Live essay reviews and edits (or $0.80/word)',
+      'Async essay reviews and edits (or $0.40/word)',
+      'Live SAT / ACT tutoring',
+      'Summer & Gov-school application help',
+      'Live application Q&A sessions',
+      'School-list & decision-plan consults',
+    ],
+    stripe_url: 'https://buy.stripe.com/REPLACE_WITH_TARGETED_LINK',
+    meritMultiplier: 50,
+  },
+};
+
+let selectedPkg = null;
+let selectedTier = null;
+let selectedOption = null;
+let meritDiscount = 0;
+let promoDiscount = 0;
+
+/* ----------------------------------------------------------------
+   Package selection
+   ---------------------------------------------------------------- */
+function updateFlagshipTierSelection() {
+  const tierSelect = document.getElementById('flagship-tier');
+  if (!tierSelect) return;
+  selectedTier = tierSelect.value;
+  
+  // Trigger merit recalculation since the base price changed
+  calcMerit();
+  
+  const btn = document.getElementById('step1-next');
+  if (!btn || !selectedPkg) return;
+  btn.textContent = '';
+  const tierData = PACKAGES.flagship.tiers[selectedTier];
+  const tierLabel = selectedPkg === 'flagship' && tierData ? ` · ${tierData.label} ($${tierData.basePrice})` : '';
+  btn.innerHTML = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4l6 6-6 6M4 10h12"/></svg> Continue with ${PACKAGES[selectedPkg].name}${tierLabel}`;
+}
+
+function updateTargetedOptionSelection() {
+  const optionSelect = document.getElementById('targeted-option');
+  if (!optionSelect) return;
+  selectedOption = optionSelect.value;
+  const btn = document.getElementById('step1-next');
+  if (!btn || !selectedPkg) return;
+  btn.textContent = '';
+  const optionLabel = selectedPkg === 'targeted' ? ` · ${optionSelect.options[optionSelect.selectedIndex].dataset.label || selectedOption}` : '';
+  btn.innerHTML = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4l6 6-6 6M4 10h12"/></svg> Continue with ${PACKAGES[selectedPkg].name}${optionLabel}`;
+}
+
+function buildStripeUrl(baseUrl) {
+  let url = baseUrl;
+  
+  if (selectedPkg === 'flagship' && selectedTier && PACKAGES.flagship.tiers[selectedTier]) {
+    url = PACKAGES.flagship.tiers[selectedTier].stripe_url;
+  } else if (selectedPkg === 'longgame') {
+    url = PACKAGES.longgame.stripe_url;
+  } else if (selectedPkg === 'targeted') {
+    url = PACKAGES.targeted.stripe_url;
+  }
+  
+  try {
+    const urlObj = new URL(url);
+    const params = urlObj.searchParams;
+    params.set('package', selectedPkg);
+
+    if (selectedPkg === 'flagship' && selectedTier && PACKAGES.flagship.tiers[selectedTier]) {
+      const tierData = PACKAGES.flagship.tiers[selectedTier];
+      params.set('tier', selectedTier);
+      params.set('tier_label', tierData.label);
+      params.set('price', tierData.basePrice);
+    }
+
+    if (selectedPkg === 'targeted' && selectedOption) {
+      const optionSelect = document.getElementById('targeted-option');
+      const option = optionSelect?.options[optionSelect.selectedIndex];
+      params.set('service', selectedOption);
+      params.set('service_label', option?.dataset.label || selectedOption);
+    }
+
+    return urlObj.toString();
+  } catch (e) {
+    console.error('Invalid Stripe URL:', url);
+    return url;
+  }
+}
+
+function selectPkg(card) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedPkg = card.dataset.pkg;
+  const tierSelect = document.getElementById('flagship-tier');
+  const optionSelect = document.getElementById('targeted-option');
+
+  if (selectedPkg === 'flagship') {
+    tierSelect.disabled = false;
+    selectedTier = tierSelect.value;
+    optionSelect.disabled = true;
+    selectedOption = null;
+  } else if (selectedPkg === 'targeted') {
+    tierSelect.disabled = true;
+    selectedTier = null;
+    optionSelect.disabled = false;
+    selectedOption = optionSelect.value;
+  } else {
+    if (tierSelect) tierSelect.disabled = true;
+    if (optionSelect) optionSelect.disabled = true;
+    selectedTier = null;
+    selectedOption = null;
+  }
+
+  const btn = document.getElementById('step1-next');
+  btn.disabled = false;
+  btn.textContent = '';
+  const selectionLabel = selectedPkg === 'flagship'
+    ? ` · ${tierSelect.options[tierSelect.selectedIndex].dataset.label || selectedTier}`
+    : selectedPkg === 'targeted'
+      ? ` · ${optionSelect.options[optionSelect.selectedIndex].dataset.label || selectedOption}`
+      : '';
+  btn.innerHTML = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4l6 6-6 6M4 10h12"/></svg> Continue with ${PACKAGES[selectedPkg].name}${selectionLabel}`;
+
+  window.requestAnimationFrame(() => {
+    btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
+/* ----------------------------------------------------------------
+   Step navigation
+   ---------------------------------------------------------------- */
+function goToStep2() {
+  if (!selectedPkg) return;
+  setStep(2);
+  renderConfirmSummary();
+  document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function goToStep1() {
+  setStep(1);
+  document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function goToStep3() {
+  // basic validation
+  const first = document.getElementById('f-first').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!first || !email) {
+    alert('Please fill in at least your name and email before continuing.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  
+  // Save form data to Firestore before proceeding to payment
+  saveFormDataToFirestore().then(saved => {
+    if (!saved) {
+      console.warn('Firestore save failed, but continuing with payment');
+    }
+  });
+  
+  setStep(3);
+  renderPaymentSidebar();
+  renderStripeEmbed();
+  document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function goToStep2fromPayment() {
+  setStep(2);
+  document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function setStep(n) {
+  [1,2,3].forEach(i => {
+    const el = document.getElementById('step-' + i);
+    if (i === 1) {
+      el.classList.toggle('hidden', n !== 1);
+    } else {
+      el.style.display = (n === i) ? 'block' : 'none';
+    }
+    // Indicator nums
+    const num = document.getElementById('ind-' + i);
+    const label = document.getElementById('ind-' + i + '-label');
+    num.classList.remove('active','done');
+    label.classList.remove('active');
+    if (i < n) { num.classList.add('done'); num.textContent = '✓'; }
+    else if (i === n) { num.classList.add('active'); num.textContent = i; label.classList.add('active'); }
+    else { num.textContent = i; }
+  });
+}
+
+/* ----------------------------------------------------------------
+   Render helpers
+   ---------------------------------------------------------------- */
+function renderConfirmSummary() {
+  const pkg = PACKAGES[selectedPkg];
+  const el = document.getElementById('confirm-pkg-display');
+  
+  let price = pkg.price;
+  if (selectedPkg === 'flagship' && selectedTier && pkg.tiers[selectedTier]) {
+    const tierData = pkg.tiers[selectedTier];
+    price = '$' + tierData.basePrice + ' <span style="font-family:var(--sans);font-style:normal;font-size:0.72rem;color:var(--on-dark-mute);font-weight:500;">' + pkg.priceSuf + '</span>';
+  } else if (price && !price.includes('<')) {
+    price = price + ' <span style="font-family:var(--sans);font-style:normal;font-size:0.72rem;color:var(--on-dark-mute);font-weight:500;">' + pkg.priceSuf + '</span>';
+  }
+  
+  el.innerHTML = `
+    <div class="confirm-tag">${pkg.tag}</div>
+    <div class="confirm-name">${pkg.name}</div>
+    <div class="confirm-price">${price}</div>
+    <div class="confirm-sessions">(${pkg.sessions})</div>
+    <div class="confirm-divider"></div>
+    <ul class="confirm-includes">
+      ${pkg.includes.map(item => `
+        <li>
+          <div class="ci-icon">
+            <svg viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 4.5l2 2L7.5 2"/></svg>
+          </div>
+          ${item}
+        </li>
+      `).join('')}
+    </ul>
+  `;
+}
+
+function renderPaymentSidebar() {
+  const pkg = PACKAGES[selectedPkg];
+  
+  let basePrice = pkg.basePrice;
+  if (selectedPkg === 'flagship' && selectedTier && pkg.tiers[selectedTier]) {
+    basePrice = pkg.tiers[selectedTier].basePrice;
+  }
+  
+  const discountedPrice = Math.max(0, basePrice - meritDiscount);
+  const priceDisplay = meritDiscount > 0
+    ? `<span style="text-decoration:line-through;opacity:0.5;font-size:1.2rem;">$${basePrice}</span> $${Math.round(discountedPrice)}`
+    : `$${basePrice}`;
+  const el = document.getElementById('payment-sidebar-pkg');
+  el.innerHTML = `
+    <div class="sidebar-tag">${pkg.tag}</div>
+    <div class="sidebar-name">${pkg.name}</div>
+    <div class="sidebar-price">${priceDisplay} <span style="font-family:var(--sans);font-style:normal;font-size:0.72rem;color:var(--on-dark-mute);font-weight:500;">${pkg.priceSuf}</span></div>
+    <div class="sidebar-sessions">(${pkg.sessions})</div>
+    <ul class="sidebar-items">
+      ${pkg.includes.map(i => `<li>${i}</li>`).join('')}
+    </ul>
+  `;
+}
+
+function renderStripeEmbed() {
+  const pkg = PACKAGES[selectedPkg];
+  const iframe = document.getElementById('stripe-iframe');
+  const link   = document.getElementById('stripe-open-link');
+
+  // Prefill customer email if entered
+  const email = document.getElementById('f-email').value.trim();
+  let url = buildStripeUrl(pkg.stripe_url);
+  if (email && url.includes('buy.stripe.com')) {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set('prefilled_email', email);
+    url = urlObj.toString();
+  }
+
+  // Set the iframe src to embed the Stripe payment link
+  iframe.src = url;
+
+  // Also set the open-in-new-tab link
+  link.href = url;
+}
+
+/* ----------------------------------------------------------------
+   Merit calculator
+   ---------------------------------------------------------------- */
+function calcMerit() {
+  const gpaInput = document.getElementById('f-gpa').value.trim();
+  const satInput = document.getElementById('f-sat').value.trim();
+  const result = document.getElementById('merit-result');
+  const priceEl = document.getElementById('merit-price-display');
+  const discountEl = document.getElementById('merit-discount-label');
+
+  if (!selectedPkg) return;
+  const pkg = PACKAGES[selectedPkg];
+
+  const gpa = gpaInput ? parseFloat(gpaInput) : null;
+  const sat = satInput ? parseFloat(satInput) : null;
+
+  // Hide result if both are empty or invalid
+  if ((gpa === null && sat === null) || (gpa !== null && isNaN(gpa)) || (sat !== null && isNaN(sat))) {
+    result.style.display = 'none';
+    return;
+  }
+
+  // Get the appropriate base price and multiplier based on package and tier selection
+  let basePrice = pkg.basePrice;
+  let meritMultiplier = pkg.meritMultiplier || 50;
+  
+  if (selectedPkg === 'flagship' && selectedTier) {
+    const tierData = pkg.tiers[selectedTier];
+    if (tierData) {
+      basePrice = tierData.basePrice;
+    }
+  }
+
+  // Calculate merit discount: GPA component + SAT component (either can be blank)
+  // GPA: Students above 4.0 GPA get discount = (GPA - 4.0) / 0.1 * multiplier
+  // SAT: Students above 1300 SAT get discount = (SAT - 1300) / 100 * multiplier
+  let gpaDiscount = 0;
+  let satDiscount = 0;
+  
+  if (gpa !== null) {
+    gpaDiscount = Math.max(0, ((gpa - 4.0) / 0.1) * meritMultiplier);
+  }
+  if (sat !== null) {
+    satDiscount = Math.max(0, ((sat - 1300) / 100) * meritMultiplier);
+  }
+  
+  const totalDiscount = Math.round(gpaDiscount + satDiscount + promoDiscount);
+
+  meritDiscount = totalDiscount;
+  const final = Math.max(0, basePrice - totalDiscount);
+
+  if (totalDiscount > 0) {
+    result.style.display = 'flex';
+    priceEl.textContent = '$' + final;
+    let discountText = 'Discount applied — you save $' + totalDiscount;
+    if (promoDiscount > 0 && (gpaDiscount + satDiscount) > 0) {
+      discountText = 'Merit + promo discount applied — you save $' + totalDiscount;
+    } else if (promoDiscount > 0) {
+      discountText = 'Promo code applied — you save $' + totalDiscount;
+    } else if (gpaDiscount + satDiscount > 0) {
+      discountText = 'Merit discount applied — you save $' + totalDiscount;
+    }
+    discountEl.textContent = discountText;
+    discountEl.style.color = '#f4c95d';
+  } else {
+    result.style.display = 'flex';
+    priceEl.textContent = '$' + basePrice;
+    discountEl.textContent = 'Enter a valid promo code or increase GPA/SAT to unlock a discount';
+    discountEl.style.color = 'rgba(181,171,148,0.6)';
+  }
+}
+
+/* ----------------------------------------------------------------
+   Promo code validation
+   ---------------------------------------------------------------- */
+const VALID_PROMO_CODES = {
+  'REFERRAL': {
+    description: 'Referral discount',
+    discountPercent: 10,
+  },
+  'EARLY': {
+    description: 'Early bird discount',
+    discountPercent: 15,
+  },
+};
+
+function validatePromoCode() {
+  const promoInput = document.getElementById('f-promo').value.trim().toUpperCase();
+  const messageEl = document.getElementById('promo-message');
+
+  if (!promoInput) {
+    messageEl.style.display = 'none';
+    promoDiscount = 0;
+    calcMerit(); // Recalculate without promo discount
+    return;
+  }
+
+  if (VALID_PROMO_CODES[promoInput]) {
+    const promo = VALID_PROMO_CODES[promoInput];
+    messageEl.style.display = 'block';
+    messageEl.style.color = '#f4c95d';
+    messageEl.textContent = '✓ ' + promo.description + ' applied';
+    
+    // Calculate promo discount as percentage of base price
+    if (!selectedPkg) return;
+    const pkg = PACKAGES[selectedPkg];
+    let basePrice = pkg.basePrice;
+    if (selectedPkg === 'flagship' && selectedTier && pkg.tiers[selectedTier]) {
+      basePrice = pkg.tiers[selectedTier].basePrice;
+    }
+    promoDiscount = Math.round(basePrice * (promo.discountPercent / 100));
+  } else if (promoInput) {
+    messageEl.style.display = 'block';
+    messageEl.style.color = 'rgba(200, 100, 100, 0.9)';
+    messageEl.textContent = '✗ Code not recognized';
+    promoDiscount = 0;
+  } else {
+    messageEl.style.display = 'none';
+    promoDiscount = 0;
+  }
+
+  calcMerit(); // Recalculate with new promo discount
+}
+
+/* ----------------------------------------------------------------
+   FAQ accordion
+   ---------------------------------------------------------------- */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ----------------------------------------------------------------
+   Smooth scroll helper
+   ---------------------------------------------------------------- */
+function smoothTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ----------------------------------------------------------------
+   Nav sticky
+   ---------------------------------------------------------------- */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive:true });
+
+/* Mobile menu */
+const toggle = document.getElementById('navToggle');
+const links  = document.getElementById('navLinks');
+const setMenu = (open) => {
+  links.classList.toggle('open', open);
+  document.documentElement.classList.toggle('menu-open', open);
+};
+toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+/* ----------------------------------------------------------------
+   Scroll reveal
+   ---------------------------------------------------------------- */
+const reveals = document.querySelectorAll('.reveal');
+const revealAll = () => reveals.forEach(el => el.classList.add('in'));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin:'0px 0px -6% 0px' });
+  reveals.forEach(el => io.observe(el));
+  document.querySelectorAll('.pay-hero .reveal').forEach(el => el.classList.add('in'));
+  window.addEventListener('load', () => setTimeout(revealAll, 1200));
+} else {
+  revealAll();
+}
+
+window.addEventListener('load', () => document.documentElement.classList.add('smooth'));
+</script>
+</body>
+</html>
