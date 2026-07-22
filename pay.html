@@ -765,6 +765,15 @@ html.js .reveal.in { opacity:1; transform:none; }
             </div>
           </div>
 
+          <div class="form-group">
+            <label class="form-label" for="f-payment-plan">Payment option</label>
+            <select class="form-select" id="f-payment-plan" onchange="updatePaymentPlanSelection()">
+              <option value="one-time">One-time payment</option>
+              <option value="installment">Installment plan</option>
+            </select>
+            <div class="form-note">Choose one-time billing or a split installment plan.</div>
+          </div>
+
           <!-- Merit calculator -->
           <div class="merit-calc">
             <div class="merit-calc-head">
@@ -862,6 +871,7 @@ html.js .reveal.in { opacity:1; transform:none; }
         </div>
 
         <!-- Main: Stripe embed -->
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
         <div class="payment-main">
           <div class="payment-header">
             <h3>Complete your payment.</h3>
@@ -869,20 +879,18 @@ html.js .reveal.in { opacity:1; transform:none; }
           </div>
           <div class="stripe-container">
 
-            <!-- Primary: embedded Stripe payment link -->
-            <iframe
-              id="stripe-iframe"
-              class="stripe-embed"
-              src="about:blank"
-              title="Secure payment — NoVa Elite College Consulting"
-              allow="payment"
-              loading="lazy"
-            ></iframe>
+            <!-- Primary: embedded Stripe buy button -->
+            <div style="width: 100%; margin-left: 25%; margin-top: 50px;">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1Tw4dZFLXhwAOyJDcnajJcuo"
+                publishable-key="pk_live_51TrHiqFLXhwAOyJDrNt6a44cZNfCfJo7oY1MfD5yHOrCgaYfRxUO9EBSxmy4T2aEtSxez6GIQcDP8thwXWDIJ2Dm00gLmUaUa8"
+              ></stripe-buy-button>
+            </div>
 
             <!-- Fallback / open-in-new-tab button always shown below embed -->
             <div class="stripe-fallback">
               <p>Prefer to pay in a new tab? Use the button below — it opens the same secure Stripe checkout.</p>
-              <a id="stripe-open-link" href="#" target="_blank" rel="noopener" class="stripe-open-btn">
+              <a id="stripe-open-link" href="#" target="_blank" rel="noopener noreferrer" class="stripe-open-btn">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14v4H2V2h4M18 2H8m10 0v10M8 12L18 2"/></svg>
                 Pay securely via Stripe →
               </a>
@@ -1036,6 +1044,7 @@ async function saveFormDataToFirestore() {
   const pkg = PACKAGES[selectedPkg];
   const selectedTierLabel = selectedPkg === 'flagship' && selectedTier ? document.getElementById('flagship-tier').options[document.getElementById('flagship-tier').selectedIndex].dataset.label || selectedTier : null;
   const selectedServiceLabel = selectedPkg === 'targeted' && selectedOption ? document.getElementById('targeted-option').options[document.getElementById('targeted-option').selectedIndex].dataset.label || selectedOption : null;
+  const paymentPlanLabel = selectedPaymentPlan === 'installment' ? 'Installment plan' : 'One-time payment';
   
   if (!firstName || !email || !selectedPkg) {
     console.warn('Missing required fields for Firestore save');
@@ -1062,6 +1071,8 @@ async function saveFormDataToFirestore() {
       selectedTierLabel: selectedPkg === 'flagship' ? selectedTierLabel : null,
       selectedService: selectedPkg === 'targeted' ? selectedOption : null,
       selectedServiceLabel: selectedPkg === 'targeted' ? selectedServiceLabel : null,
+      paymentPlan: selectedPaymentPlan,
+      paymentPlanLabel: paymentPlanLabel,
       basePrice: pkg.basePrice,
       finalPrice: Math.max(0, pkg.basePrice - meritDiscount),
       meritDiscountApplied: meritDiscount - promoDiscount,
@@ -1174,6 +1185,7 @@ const PACKAGES = {
 let selectedPkg = null;
 let selectedTier = null;
 let selectedOption = null;
+let selectedPaymentPlan = 'one-time';
 let meritDiscount = 0;
 let promoDiscount = 0;
 
@@ -1207,21 +1219,32 @@ function updateTargetedOptionSelection() {
   btn.innerHTML = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4l6 6-6 6M4 10h12"/></svg> Continue with ${PACKAGES[selectedPkg].name}${optionLabel}`;
 }
 
-function buildStripeUrl(baseUrl) {
-  let url = baseUrl;
-  
-  if (selectedPkg === 'flagship' && selectedTier && PACKAGES.flagship.tiers[selectedTier]) {
-    url = PACKAGES.flagship.tiers[selectedTier].stripe_url;
-  } else if (selectedPkg === 'longgame') {
-    url = PACKAGES.longgame.stripe_url;
-  } else if (selectedPkg === 'targeted') {
-    url = PACKAGES.targeted.stripe_url;
+function updatePaymentPlanSelection() {
+  const select = document.getElementById('f-payment-plan');
+  selectedPaymentPlan = select?.value || 'one-time';
+
+  if (document.getElementById('step-2') && document.getElementById('step-2').style.display !== 'none') {
+    renderConfirmSummary();
   }
-  
+
+  if (document.getElementById('step-3') && document.getElementById('step-3').style.display === 'block') {
+    renderPaymentSidebar();
+  }
+}
+
+function buildStripeUrl(baseUrl) {
+  const hardcodedStripeLinks = {
+    'installment': 'https://buy.stripe.com/8x2cN5enz5rd9sVaA40kE00',
+    'one-time': 'https://buy.stripe.com/14A7sL4MZaLx5cF6jO0kE01',
+  };
+
+  let url = hardcodedStripeLinks[selectedPaymentPlan] || hardcodedStripeLinks['one-time'];
+
   try {
     const urlObj = new URL(url);
     const params = urlObj.searchParams;
-    params.set('package', selectedPkg);
+    params.set('package', selectedPkg || 'unknown');
+    params.set('payment_plan', selectedPaymentPlan);
 
     if (selectedPkg === 'flagship' && selectedTier && PACKAGES.flagship.tiers[selectedTier]) {
       const tierData = PACKAGES.flagship.tiers[selectedTier];
@@ -1369,6 +1392,7 @@ function renderConfirmSummary() {
     <div class="confirm-price">${price}</div>
     <div class="confirm-sessions">(${pkg.sessions})</div>
     <div class="confirm-divider"></div>
+    <div style="margin-bottom:0.8rem; font-size:0.9rem; color:var(--on-dark-mute);"><strong style="color:var(--on-dark);">Payment:</strong> ${selectedPaymentPlan === 'installment' ? 'Installment plan' : 'One-time payment'}</div>
     <ul class="confirm-includes">
       ${pkg.includes.map(item => `
         <li>
@@ -1400,6 +1424,7 @@ function renderPaymentSidebar() {
     <div class="sidebar-name">${pkg.name}</div>
     <div class="sidebar-price">${priceDisplay} <span style="font-family:var(--sans);font-style:normal;font-size:0.72rem;color:var(--on-dark-mute);font-weight:500;">${pkg.priceSuf}</span></div>
     <div class="sidebar-sessions">(${pkg.sessions})</div>
+    <div style="margin-top:0.8rem; font-size:0.9rem; color:var(--on-dark-mute);"><strong style="color:var(--on-dark);">Payment:</strong> ${selectedPaymentPlan === 'installment' ? 'Installment plan' : 'One-time payment'}</div>
     <ul class="sidebar-items">
       ${pkg.includes.map(i => `<li>${i}</li>`).join('')}
     </ul>
@@ -1420,11 +1445,14 @@ function renderStripeEmbed() {
     url = urlObj.toString();
   }
 
-  // Set the iframe src to embed the Stripe payment link
-  iframe.src = url;
+  // Keep the embedded buy button in place, but still update the fallback new-tab link.
+  if (iframe) {
+    iframe.src = url;
+  }
 
-  // Also set the open-in-new-tab link
-  link.href = url;
+  if (link) {
+    link.href = url;
+  }
 }
 
 /* ----------------------------------------------------------------
