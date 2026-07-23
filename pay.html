@@ -6,6 +6,7 @@
 <title>Get Started — NoVa Elite College Consulting</title>
 <meta name="description" content="Select your NoVa Elite package and secure your spot. Merit-based pricing. T20 guarantee. Book your advisor today." />
 <script>document.documentElement.classList.add('js');</script>
+<script src="https://js.stripe.com/v3/"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -871,7 +872,6 @@ html.js .reveal.in { opacity:1; transform:none; }
         </div>
 
         <!-- Main: Stripe embed -->
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
         <div class="payment-main">
           <div class="payment-header">
             <h3>Complete your payment.</h3>
@@ -879,18 +879,10 @@ html.js .reveal.in { opacity:1; transform:none; }
           </div>
           <div class="stripe-container">
 
-            <!-- Primary: embedded Stripe buy button -->
-            <div style="width: 100%; margin-left: 25%; margin-top: 50px;">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1Tw4dZFLXhwAOyJDcnajJcuo"
-                publishable-key="pk_live_51TrHiqFLXhwAOyJDrNt6a44cZNfCfJo7oY1MfD5yHOrCgaYfRxUO9EBSxmy4T2aEtSxez6GIQcDP8thwXWDIJ2Dm00gLmUaUa8"
-              ></stripe-buy-button>
-            </div>
-
             <!-- Fallback / open-in-new-tab button always shown below embed -->
             <div class="stripe-fallback">
               <p>Prefer to pay in a new tab? Use the button below — it opens the same secure Stripe checkout.</p>
-              <a id="stripe-open-link" href="#" target="_blank" rel="noopener noreferrer" class="stripe-open-btn">
+              <a id="pay-now-btn" onclick="startCheckout()" class="stripe-open-btn">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14v4H2V2h4M18 2H8m10 0v10M8 12L18 2"/></svg>
                 Pay securely via Stripe →
               </a>
@@ -995,6 +987,7 @@ html.js .reveal.in { opacity:1; transform:none; }
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
+  const stripe = Stripe("pk_live_51TrHiqFLXhwAOyJDrNt6a44cZNfCfJo7oY1MfD5yHOrCgaYfRxUO9EBSxmy4T2aEtSxez6GIQcDP8thwXWDIJ2Dm00gLmUaUa8");
   // Firebase configuration - REPLACE WITH YOUR VALUES
 const firebaseConfig = {
     apiKey: "AIzaSyDFeVGdqvEVN2UHtDF-gwaG5g9_LQ_mvws",
@@ -1052,6 +1045,11 @@ async function saveFormDataToFirestore() {
   }
 
   try {
+    let basePrice = pkg.basePrice;
+
+if (selectedPkg === "flagship") {
+    basePrice = pkg.tiers[selectedTier].basePrice;
+}
     const formData = {
       // Personal info
       firstName: firstName,
@@ -1073,7 +1071,7 @@ async function saveFormDataToFirestore() {
       selectedServiceLabel: selectedPkg === 'targeted' ? selectedServiceLabel : null,
       paymentPlan: selectedPaymentPlan,
       paymentPlanLabel: paymentPlanLabel,
-      basePrice: pkg.basePrice,
+      basePrice: basePrice,
       finalPrice: Math.max(0, pkg.basePrice - meritDiscount),
       meritDiscountApplied: meritDiscount - promoDiscount,
       promoCode: promoCode,
@@ -1086,7 +1084,6 @@ async function saveFormDataToFirestore() {
       
       // Status tracking
       status: 'pending_payment',
-      stripeLink: buildStripeUrl(pkg.stripe_url)
     };
 
     const docRef = await window.firestoreAddDoc(window.firestoreCollection(window.firebaseDb, 'payments'), formData);
@@ -1126,19 +1123,16 @@ const PACKAGES = {
         label: 'Bronze',
         basePrice: 1499,
         hours: '10 hours',
-        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_BRONZE_LINK',
       },
       silver: {
         label: 'Silver',
         basePrice: 1949,
         hours: '20 hours',
-        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_SILVER_LINK',
       },
       gold: {
         label: 'Gold',
         basePrice: 2499,
         hours: 'Unlimited hours',
-        stripe_url: 'https://buy.stripe.com/REPLACE_WITH_FLAGSHIP_GOLD_LINK',
       },
     },
     meritMultiplier: 50,
@@ -1158,7 +1152,6 @@ const PACKAGES = {
       'Extracurricular strategization',
       'Long-term roadmap to a Top-20 profile',
     ],
-    stripe_url: 'https://buy.stripe.com/REPLACE_WITH_LONGGAME_LINK',
     meritMultiplier: 25,
   },
   targeted: {
@@ -1177,7 +1170,6 @@ const PACKAGES = {
       'Live application Q&A sessions',
       'School-list & decision-plan consults',
     ],
-    stripe_url: 'https://buy.stripe.com/REPLACE_WITH_TARGETED_LINK',
     meritMultiplier: 50,
   },
 };
@@ -1189,6 +1181,82 @@ let selectedPaymentPlan = 'one-time';
 let meritDiscount = 0;
 let promoDiscount = 0;
 
+async function startCheckout() {
+
+    const packageName =
+        selectedPkg === "flagship"
+            ? "application_partner"
+            : selectedPkg === "longgame"
+                ? "long_term"
+                : "single_meeting";
+
+    const tier =
+        selectedPkg === "flagship"
+            ? selectedTier
+            : "standard";
+
+    const paymentType =
+        selectedPaymentPlan === "installment"
+            ? "installments"
+            : "single";
+
+    const body = {
+
+        packageName,
+        tier,
+        paymentType,
+
+        student: {
+
+            firstName:
+                document.getElementById("f-first").value,
+
+            lastName:
+                document.getElementById("f-last").value,
+
+            email:
+                document.getElementById("f-email").value
+
+        },
+
+        academic: {
+
+            gpa:
+                Number(document.getElementById("f-gpa").value || 0),
+
+            sat:
+                Number(document.getElementById("f-sat").value || 0)
+
+        },
+
+        promoCode:
+            document.getElementById("f-promo").value
+
+    };
+const btn = document.getElementById("pay-now-btn");
+
+btn.disabled = true;
+btn.textContent = "Creating secure checkout...";
+    const response = await fetch(
+        "https://novaelite-backend.vercel.app/api/create-checkout-session",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+        alert(data.error);
+        return;
+    }
+
+window.location.href = data.url;
+}
 /* ----------------------------------------------------------------
    Package selection
    ---------------------------------------------------------------- */
@@ -1230,42 +1298,17 @@ function updatePaymentPlanSelection() {
   if (document.getElementById('step-3') && document.getElementById('step-3').style.display === 'block') {
     renderPaymentSidebar();
   }
+  const paymentSelect = document.getElementById("f-payment-plan");
+
+if (selectedPkg === "targeted") {
+    paymentSelect.value = "one-time";
+    paymentSelect.disabled = true;
+    selectedPaymentPlan = "one-time";
+} else {
+    paymentSelect.disabled = false;
+}
 }
 
-function buildStripeUrl(baseUrl) {
-  const hardcodedStripeLinks = {
-    'installment': 'https://buy.stripe.com/8x2cN5enz5rd9sVaA40kE00',
-    'one-time': 'https://buy.stripe.com/14A7sL4MZaLx5cF6jO0kE01',
-  };
-
-  let url = hardcodedStripeLinks[selectedPaymentPlan] || hardcodedStripeLinks['one-time'];
-
-  try {
-    const urlObj = new URL(url);
-    const params = urlObj.searchParams;
-    params.set('package', selectedPkg || 'unknown');
-    params.set('payment_plan', selectedPaymentPlan);
-
-    if (selectedPkg === 'flagship' && selectedTier && PACKAGES.flagship.tiers[selectedTier]) {
-      const tierData = PACKAGES.flagship.tiers[selectedTier];
-      params.set('tier', selectedTier);
-      params.set('tier_label', tierData.label);
-      params.set('price', tierData.basePrice);
-    }
-
-    if (selectedPkg === 'targeted' && selectedOption) {
-      const optionSelect = document.getElementById('targeted-option');
-      const option = optionSelect?.options[optionSelect.selectedIndex];
-      params.set('service', selectedOption);
-      params.set('service_label', option?.dataset.label || selectedOption);
-    }
-
-    return urlObj.toString();
-  } catch (e) {
-    console.error('Invalid Stripe URL:', url);
-    return url;
-  }
-}
 
 function selectPkg(card) {
   document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
@@ -1343,8 +1386,8 @@ function goToStep3() {
   
   setStep(3);
   renderPaymentSidebar();
-  renderStripeEmbed();
-  document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
+document.getElementById("pay-now-btn").onclick = startCheckout;  
+document.getElementById('pkg-selector').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 function goToStep2fromPayment() {
@@ -1409,7 +1452,11 @@ function renderConfirmSummary() {
 function renderPaymentSidebar() {
   const pkg = PACKAGES[selectedPkg];
   
-  let basePrice = pkg.basePrice;
+let basePrice = pkg.basePrice;
+
+if (selectedPkg === "flagship") {
+    basePrice = pkg.tiers[selectedTier].basePrice;
+}
   if (selectedPkg === 'flagship' && selectedTier && pkg.tiers[selectedTier]) {
     basePrice = pkg.tiers[selectedTier].basePrice;
   }
@@ -1431,29 +1478,6 @@ function renderPaymentSidebar() {
   `;
 }
 
-function renderStripeEmbed() {
-  const pkg = PACKAGES[selectedPkg];
-  const iframe = document.getElementById('stripe-iframe');
-  const link   = document.getElementById('stripe-open-link');
-
-  // Prefill customer email if entered
-  const email = document.getElementById('f-email').value.trim();
-  let url = buildStripeUrl(pkg.stripe_url);
-  if (email && url.includes('buy.stripe.com')) {
-    const urlObj = new URL(url);
-    urlObj.searchParams.set('prefilled_email', email);
-    url = urlObj.toString();
-  }
-
-  // Keep the embedded buy button in place, but still update the fallback new-tab link.
-  if (iframe) {
-    iframe.src = url;
-  }
-
-  if (link) {
-    link.href = url;
-  }
-}
 
 /* ----------------------------------------------------------------
    Merit calculator
@@ -1478,7 +1502,11 @@ function calcMerit() {
   }
 
   // Get the appropriate base price and multiplier based on package and tier selection
-  let basePrice = pkg.basePrice;
+let basePrice = pkg.basePrice;
+
+if (selectedPkg === "flagship") {
+    basePrice = pkg.tiers[selectedTier].basePrice;
+}
   let meritMultiplier = pkg.meritMultiplier || 50;
   
   if (selectedPkg === 'flagship' && selectedTier) {
