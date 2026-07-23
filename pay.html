@@ -1495,65 +1495,51 @@ function calcMerit() {
   const gpa = gpaInput ? parseFloat(gpaInput) : null;
   const sat = satInput ? parseFloat(satInput) : null;
 
-  // Hide result if both are empty or invalid
   if ((gpa === null && sat === null) || (gpa !== null && isNaN(gpa)) || (sat !== null && isNaN(sat))) {
     result.style.display = 'none';
     return;
   }
 
-  // Get the appropriate base price and multiplier based on package and tier selection
-let basePrice = pkg.basePrice;
-
-if (selectedPkg === "flagship") {
+  // Get base price
+  let basePrice = pkg.basePrice;
+  if (selectedPkg === 'flagship' && selectedTier && pkg.tiers[selectedTier]) {
     basePrice = pkg.tiers[selectedTier].basePrice;
-}
-  let meritMultiplier = pkg.meritMultiplier || 50;
-  
-  if (selectedPkg === 'flagship' && selectedTier) {
-    const tierData = pkg.tiers[selectedTier];
-    if (tierData) {
-      basePrice = tierData.basePrice;
-    }
   }
 
-  // Calculate merit discount: GPA component + SAT component (either can be blank)
-  // GPA: Students above 4.0 GPA get discount = (GPA - 4.0) / 0.1 * multiplier
-  // SAT: Students above 1300 SAT get discount = (SAT - 1300) / 100 * multiplier
+  const meritMultiplier = pkg.meritMultiplier || 50;
+
+  // Calculate GPA + SAT components
   let gpaDiscount = 0;
   let satDiscount = 0;
-  
-  if (gpa !== null) {
-    gpaDiscount = Math.max(0, ((gpa - 4.0) / 0.1) * meritMultiplier);
-  }
-  if (sat !== null) {
-    satDiscount = Math.max(0, ((sat - 1300) / 100) * meritMultiplier);
-  }
-  
-  const totalDiscount = Math.round(gpaDiscount + satDiscount + promoDiscount);
-if (meritMultiplier === 25) {
-    totalDiscount = Math.min(totalDiscount, 500);
-} else if (meritMultiplier === 25) {
-    totalDiscount = Math.min(totalDiscount, 200);
-}
+  if (gpa !== null) gpaDiscount = Math.max(0, ((gpa - 4.0) / 0.1) * meritMultiplier);
+  if (sat !== null) satDiscount = Math.max(0, ((sat - 1300) / 100) * meritMultiplier);
 
-  meritDiscount = totalDiscount;
-  const final = Math.max(0, basePrice - totalDiscount);
+  // ── Cap logic keyed off package, not meritMultiplier ──
+  let rawDiscount = Math.round(gpaDiscount + satDiscount + promoDiscount);
+  if (selectedPkg === 'flagship') {
+    rawDiscount = Math.min(rawDiscount, 500);
+  } else if (selectedPkg === 'longgame') {
+    rawDiscount = Math.min(rawDiscount, 200);
+  }
+  // targeted: no cap (per-session, already low price)
 
-  if (totalDiscount > 0) {
-    result.style.display = 'flex';
+  meritDiscount = rawDiscount;
+  const final = Math.max(0, basePrice - meritDiscount);
+
+  result.style.display = 'flex';
+
+  if (meritDiscount > 0) {
     priceEl.textContent = '$' + final;
-    let discountText = 'Discount applied — you save $' + totalDiscount;
-    if (promoDiscount > 0 && (gpaDiscount + satDiscount) > 0) {
-      discountText = 'Merit + promo discount applied — you save $' + totalDiscount;
+    let discountText = 'Merit discount applied — you save $' + meritDiscount;
+    const meritOnly = Math.round(gpaDiscount + satDiscount);
+    if (promoDiscount > 0 && meritOnly > 0) {
+      discountText = 'Merit + promo discount applied — you save $' + meritDiscount;
     } else if (promoDiscount > 0) {
-      discountText = 'Promo code applied — you save $' + totalDiscount;
-    } else if (gpaDiscount + satDiscount > 0) {
-      discountText = 'Merit discount applied — you save $' + totalDiscount;
+      discountText = 'Promo code applied — you save $' + meritDiscount;
     }
     discountEl.textContent = discountText;
     discountEl.style.color = '#f4c95d';
   } else {
-    result.style.display = 'flex';
     priceEl.textContent = '$' + basePrice;
     discountEl.textContent = 'Enter a valid promo code or increase GPA/SAT to unlock a discount';
     discountEl.style.color = 'rgba(181,171,148,0.6)';
