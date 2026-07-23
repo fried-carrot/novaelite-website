@@ -1530,6 +1530,11 @@ if (selectedPkg === "flagship") {
   }
   
   const totalDiscount = Math.round(gpaDiscount + satDiscount + promoDiscount);
+if (meritMultiplier === 25) {
+    totalDiscount = Math.min(totalDiscount, 500);
+} else if (meritMultiplier === 25) {
+    totalDiscount = Math.min(totalDiscount, 200);
+}
 
   meritDiscount = totalDiscount;
   const final = Math.max(0, basePrice - totalDiscount);
